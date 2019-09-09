@@ -5,7 +5,7 @@
 [Contributors](https://github.com/Runi-VN/CA-1/graphs/contributors) of 3rd Semester @ Datamatiker Cphbusiness Lyngby.
 - [Malte Magnussen](https://github.com/MalteMagnussen/)
 - [Asger Bjarup](https://github.com/HrBjarup/)
-- [Camilla Staunstrup(https://github.com/Castau/)
+- [Camilla Staunstrup](https://github.com/Castau/)
 - [Rúni Vedel Niclasen](https://github.com/Runi-VN)
 
 Databases:  
