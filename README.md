@@ -4,4 +4,4 @@
 
 Databases:  
 - CA1
-- CA1_TEST
+- CA1_test
