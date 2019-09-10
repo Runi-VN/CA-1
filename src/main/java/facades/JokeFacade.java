@@ -122,6 +122,24 @@ public class JokeFacade {
         }
     }
 
+    public JokeDTO getJokeByRandomAsDTO() {
+        EntityManager em = getEntityManager();
+        Random rnd = new Random();
+
+        List<Long> jokeIds = getJokeIds(); //get list of all IDs from database
+        int rndElement = rnd.nextInt(jokeIds.size()); //pick a random element within this collection
+
+        long id = jokeIds.get(rndElement); //use the random element for the return object.
+        try {
+            return new JokeDTO(em.find(Joke.class, id));
+        } catch (Exception ex) {
+            //em.getTransaction().rollback();
+            throw new IllegalArgumentException("Could not get joke by ID" + ex.getMessage());
+        } finally {
+            em.close();
+        }
+    }
+
     private List<Long> getJokeIds() {
         EntityManager em = getEntityManager();
         try {

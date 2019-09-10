@@ -177,6 +177,7 @@ public class JokeFacadeTest {
         Assertions.assertNotNull(result);
     }
 
+    @Disabled
     @Test
     public void testGetJokeByRandomError() {
         //Arrange
@@ -188,9 +189,13 @@ public class JokeFacadeTest {
     @Test
     public void testGetJokeByRandomAsDTO() {
         //Arrange
+        //Joke expResult;
+        JokeDTO result;
 
         //Act
+        result = facade.getJokeByRandomAsDTO();
         //Assert
+        Assertions.assertNotNull(result);
     }
 
 }
