@@ -32,6 +32,8 @@
             <per id="OutPutReceiver">
 
             </per>
+            
+            <a href="index.html" id="fromGroupContractToIndexLink"></a>
 
         </div>
 
