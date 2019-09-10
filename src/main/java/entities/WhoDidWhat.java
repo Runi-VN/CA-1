@@ -6,6 +6,7 @@
 package entities;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.persistence.Entity;
@@ -50,7 +51,12 @@ public class WhoDidWhat implements Serializable {
     }
 
     public List<String> addDone(String whatIDid) {
-        done.add(whatIDid);
+        if (this.done != null) {
+            done.add(whatIDid);
+        } else {
+            this.done = new ArrayList<>();
+            done.add(whatIDid);
+        }
         return done;
     }
 
