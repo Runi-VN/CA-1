@@ -44,9 +44,13 @@ public class WhoDidWhatFacadeTest {
         testTwo.addDone("Everything");
         testTwo.addDone("Even more");
         testTwo.addDone("So much");
+        
+        WhoDidWhat testExisting = new WhoDidWhat("existing");
+        testExisting.addDone("work");
 
         testList.add(testTask);
         testList.add(testTwo);
+        testList.add(testExisting);
 
         EntityManager em = emf.createEntityManager();
         try {
@@ -103,12 +107,25 @@ public class WhoDidWhatFacadeTest {
 
     @Test
     @Transactional
-    public void testMakeWork() throws Exception {
+    public void testMakeWorkByNewName() throws Exception {
         // Arrange
         WhoDidWhat expResult = new WhoDidWhat("Test");
         expResult.addDone("Everything");
         // Act
         WhoDidWhat result = facade.makeWork("Test", "Everything");
+        // Assert
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    @Transactional
+    public void testMakeWorkByExistingName() throws Exception {
+        // Arrange
+        WhoDidWhat expResult = new WhoDidWhat("existing");
+        expResult.addDone("work");
+        expResult.addDone("more work");
+        // Act
+        WhoDidWhat result = facade.makeWork("existing", "more work");
         // Assert
         assertEquals(expResult, result);
     }

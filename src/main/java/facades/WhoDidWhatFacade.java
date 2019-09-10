@@ -64,6 +64,8 @@ public class WhoDidWhatFacade {
                 result.add(new WhoDidWhatDTO(who));
             });
             return result;
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Could not get all work done from database: " + e.getMessage());
         } finally {
             em.close();
         }
