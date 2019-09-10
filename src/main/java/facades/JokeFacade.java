@@ -72,6 +72,11 @@ public class JokeFacade {
         }
     }
 
+    /**
+     * em.find doesn't actually throw an exception, it just returns null...
+     * @param id
+     * @return 
+     */
     public Joke getJokeById(Long id) {
         EntityManager em = getEntityManager();
         try {

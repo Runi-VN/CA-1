@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -132,12 +133,21 @@ public class JokeFacadeTest {
         assertEquals(expResult, result);
     }
 
+    /**
+     * em.find in getJokeByID does not actually throw an exception, but returns null.
+     */
     @Test
     public void testGetJokeByIdError() {
         //Arrange
+        Joke expResult = null;
+        Joke result;
 
         //Act
+        result = facade.getJokeById(99L);
+
         //Assert
+        Assertions.assertNull(result);
+        assertEquals(expResult, result);
     }
 
     @Test
