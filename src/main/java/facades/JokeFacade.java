@@ -1,5 +1,7 @@
 package facades;
 
+import entities.Joke;
+import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -8,16 +10,16 @@ import javax.persistence.EntityManagerFactory;
  * Rename Class to a relevant name Add add relevant facade methods
  */
 public class JokeFacade {
-
+    
     private static JokeFacade instance;
     private static EntityManagerFactory emf;
-    
+
     //Private Constructor to ensure Singleton
-    private JokeFacade() {}
-    
-    
+    private JokeFacade() {
+    }
+
     /**
-     * 
+     *
      * @param _emf
      * @return an instance of this facade class.
      */
@@ -28,19 +30,34 @@ public class JokeFacade {
         }
         return instance;
     }
-
+    
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
     
-    public long getJokeCount(){
+    public long getJokeCount() {
         EntityManager em = getEntityManager();
-        try{
-             return (long)em.createQuery("SELECT COUNT(r) FROM Joke r").getSingleResult();
-        }finally{  
+        try {
+            return (long) em.createQuery("SELECT COUNT(r) FROM Joke r").getSingleResult();
+        } catch (Exception ex) {
+            //em.getTransaction().rollback();
+            throw new IllegalArgumentException("Could not get joke count");
+        } finally {            
             em.close();
         }
         
     }
-
+    
+    public List<Joke> getAllJokes() {
+        EntityManager em = getEntityManager();
+        try {
+            return em.createQuery("SELECT r FROM Joke r", Joke.class).getResultList();
+        } catch (Exception ex) {
+            //em.getTransaction().rollback();
+            throw new IllegalArgumentException("Could not get all movies" + ex.getMessage());
+        } finally {            
+            em.close();
+        }
+    }
+    
 }

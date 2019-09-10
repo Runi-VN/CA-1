@@ -8,6 +8,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -66,7 +67,7 @@ public class JokeFacadeTest {
 
     @AfterEach
     public void tearDown() {
-//        Remove any data after each test was run
+        //Remove any data after each test was run
     }
 
     @Test
@@ -74,4 +75,91 @@ public class JokeFacadeTest {
         assertEquals(jokes.size(), facade.getJokeCount(), "Expects three rows in the database");
     }
 
+    @Test
+    public void testGetAllJokes() {
+        //Arrange
+        List<Joke> expResult = jokes;
+        List<Joke> result;
+
+        //Act
+        result = facade.getAllJokes();
+        
+        //Assert
+        Assertions.assertNotNull(result);
+        assertEquals(expResult, result);
+    }
+    
+     @Test
+    public void testGetAllJokesError() {
+        //Arrange
+
+        //Act
+        
+        //Assert
+    }
+    
+     @Test
+    public void testGetAllJokesAsDTO() {
+        //Arrange
+
+        //Act
+        
+        //Assert
+    }
+
+    @Test
+    public void testGetJokeByID() {
+        //Arrange
+
+        //Act
+        
+        //Assert
+    }
+    
+    @Test
+    public void testGetJokeByIDError() {
+        //Arrange
+
+        //Act
+        
+        //Assert
+    }
+    
+    @Test
+    public void testGetJokeByIDAsDTO() {
+        //Arrange
+
+        //Act
+        
+        //Assert
+    }
+    
+    @Test
+    public void testGetJokeRandom() {
+        //Arrange
+
+        //Act
+        
+        //Assert
+    }
+    
+    @Test
+    public void testGetJokeRandomError() {
+        //Arrange
+
+        //Act
+        
+        //Assert
+    }
+    
+    @Test
+    public void testGetJokeRandomAsDTO() {
+        //Arrange
+
+        //Act
+        
+        //Assert
+    }
+    
+    
 }

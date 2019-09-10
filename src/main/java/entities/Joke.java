@@ -30,7 +30,7 @@ public class Joke implements Serializable {
         this.type = type;
         this.rating = rating;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -100,6 +100,5 @@ public class Joke implements Serializable {
         }
         return true;
     }
-    
-    
+
 }
