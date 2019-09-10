@@ -78,7 +78,7 @@ public class JokeFacadeTest {
 
     @Test
     public void testGetJokeCount() {
-        assertEquals(jokes.size(), facade.getJokeCount(), "Expects three rows in the database");
+        assertEquals(jokes.size(), facade.getJokeCount(), "Expects four rows in the database");
     }
 
     @Test

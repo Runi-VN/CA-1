@@ -2,6 +2,7 @@ package rest;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonObject;
 import utils.EMF_Creator;
 import facades.JokeFacade;
 import javax.persistence.EntityManagerFactory;
@@ -24,39 +25,42 @@ public class JokeResource {
     public String demo() {
         return "{\"msg\":\"ACCESS GRANTED\"}";
     }
+    
+    @Path("/count")
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getJokeCount() {
+        try {
+            JsonObject count = new JsonObject();
+            count.addProperty("count", FACADE.getJokeCount());
+            return GSON.toJson(count);
+        } catch (Exception ex) {
+            return "{\"error\": \"" + ex.getMessage() + "\"}";
+        }
+    }
 
     @GET
     @Path("/all")
     @Produces({MediaType.APPLICATION_JSON})
-    public String getAllMovies() throws Exception {
+    public String getAllJokes() throws Exception {
         try {
             return GSON.toJson(FACADE.getAllJokes());
         } catch (Exception ex) {
-            return "\"error\": \"" + ex.getMessage() + "\"";
+            return "{\"error\": \"" + ex.getMessage() + "\"}";
         }
     }
     
      @GET
     @Path("/all/dto")
     @Produces({MediaType.APPLICATION_JSON})
-    public String getAllMoviesAsDTO() throws Exception {
+    public String getAllJokesAsDTO() throws Exception {
         try {
             return GSON.toJson(FACADE.getAllJokesAsDTO());
         } catch (Exception ex) {
-            return "\"error\": \"" + ex.getMessage() + "\"";
+            return "{\"error\": \"" + ex.getMessage() + "\"}";
         }
     }
 
-    @Path("/count")
-    @GET
-    @Produces({MediaType.APPLICATION_JSON})
-    public String getJokeCount() {
-        try {
-            return GSON.toJson(FACADE.getJokeCount());
-        } catch (Exception ex) {
-            return "\"error\": \"" + ex.getMessage() + "\"";
-        }
-    }
 
     @GET
     @Path("/{id}")
@@ -65,7 +69,7 @@ public class JokeResource {
         try {
             return GSON.toJson(FACADE.getJokeById(id));
         } catch (Exception ex) {
-            return "\"error\": \"" + ex.getMessage() + "\"";
+            return "{\"error\": \"" + ex.getMessage() + "\"}";
         }
     }
 
@@ -76,7 +80,7 @@ public class JokeResource {
         try {
             return GSON.toJson(FACADE.getJokeByIdAsDTO(id));
         } catch (Exception ex) {
-            return "\"error\": \"" + ex.getMessage() + "\"";
+            return "{\"error\": \"" + ex.getMessage() + "\"}";
         }
     }
     
@@ -87,7 +91,7 @@ public class JokeResource {
         try {
             return GSON.toJson(FACADE.getJokeByRandom());
         } catch (Exception ex) {
-            return "\"error\": \"" + ex.getMessage() + "\"";
+            return "{\"error\": \"" + ex.getMessage() + "\"}";
         }
     }
     
@@ -98,7 +102,7 @@ public class JokeResource {
         try {
             return GSON.toJson(FACADE.getJokeByRandomAsDTO());
         } catch (Exception ex) {
-            return "\"error\": \"" + ex.getMessage() + "\"";
+            return "[\"error\": \"" + ex.getMessage() + "\"}";
         }
     }
 
