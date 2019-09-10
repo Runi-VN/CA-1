@@ -28,10 +28,10 @@ public class CarDTO
     public CarDTO(Car car)
     {
         this.ID = car.getId();
-        this.Year = Year;
-        this.Make = Make;
-        this.Model = Model;
-        this.Price = Price;
+        this.Year = car.getCar_year();
+        this.Make = car.getCar_make();
+        this.Model = car.getCar_model();
+        this.Price = car.getCar_price();
     }
 
     public Long getID()
