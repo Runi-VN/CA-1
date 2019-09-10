@@ -30,7 +30,7 @@ public class Joke implements Serializable {
         this.type = type;
         this.rating = rating;
     }
-    
+
     public Long getId() {
         return id;
     }
@@ -100,6 +100,10 @@ public class Joke implements Serializable {
         }
         return true;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Joke{" + " id = " + id + "\n joke = " + joke + "\n reference = " + reference + "\n type = " + type + "\n rating = " + rating + '}';
+    }
+
 }
