@@ -21,12 +21,14 @@
 
     </head>
     <body>
-
         <!-- Page Content -->
 
+        
         <!-- OutPut container -->
         <div class="container">
-
+            <h1 id="groupContractTitle"></h1>
+            
+            
             <per id="OutPutReceiver">
 
             </per>
@@ -41,5 +43,6 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
     <!-- My Custom JavaScript - Input below this line -->
-
+    <script src="javascript/groupContract.js"></script>
+    
 </html>
