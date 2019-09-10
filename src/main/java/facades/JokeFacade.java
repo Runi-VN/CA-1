@@ -1,5 +1,6 @@
 package facades;
 
+import dto.JokeDTO;
 import entities.Joke;
 import java.util.List;
 import javax.persistence.EntityManager;
@@ -60,10 +61,10 @@ public class JokeFacade {
         }
     }
 
-    public List<Joke> getAllJokesAsDTO() {
+    public List<JokeDTO> getAllJokesAsDTO() {
         EntityManager em = getEntityManager();
         try {
-            return em.createQuery("SELECT NEW dto.JokeDTO(j) FROM Joke j", Joke.class).getResultList();
+            return em.createQuery("SELECT NEW dto.JokeDTO(j) FROM Joke j", JokeDTO.class).getResultList();
         } catch (Exception ex) {
             //em.getTransaction().rollback();
             throw new IllegalArgumentException("Could not get all jokes (DTO)" + ex.getMessage());
@@ -81,6 +82,18 @@ public class JokeFacade {
         EntityManager em = getEntityManager();
         try {
             return em.find(Joke.class, id);
+        } catch (Exception ex) {
+            //em.getTransaction().rollback();
+            throw new IllegalArgumentException("Could not get joke by ID" + ex.getMessage());
+        } finally {
+            em.close();
+        }
+    }
+
+    public JokeDTO getJokeByIdAsDTO(Long id) {
+        EntityManager em = getEntityManager();
+        try {
+            return new JokeDTO(em.find(Joke.class, id));
         } catch (Exception ex) {
             //em.getTransaction().rollback();
             throw new IllegalArgumentException("Could not get joke by ID" + ex.getMessage());

@@ -11,7 +11,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -105,7 +104,7 @@ public class JokeFacadeTest {
     public void testGetAllJokesAsDTO() {
         //Arrange
         List<JokeDTO> expResult = new ArrayList();
-        List<Joke> result;
+        List<JokeDTO> result;
 
         for (Joke j : jokes) {
             expResult.add(new JokeDTO(j)); //adding DTOs
@@ -153,9 +152,15 @@ public class JokeFacadeTest {
     @Test
     public void testGetJokeByIdAsDTO() {
         //Arrange
+        JokeDTO expResult = new JokeDTO(jokes.get(2));
+        JokeDTO result;
 
         //Act
+        result = facade.getJokeByIdAsDTO(expResult.getId());
+
         //Assert
+        Assertions.assertNotNull(result);
+        assertEquals(expResult, result);
     }
 
     @Test
