@@ -11,6 +11,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -135,19 +136,25 @@ public class JokeFacadeTest {
     /**
      * em.find in getJokeByID does not actually throw an exception, but returns
      * null.
+     *
+     *
+     * I made a guard for that and throw an IllegalStateException.
      */
     @Test
     public void testGetJokeByIdError() {
         //Arrange
-        Joke expResult = null;
-        Joke result;
+        Throwable expResult = new IllegalArgumentException("Could not get joke by ID -> Database is empty or joke doesn't exist.");
+        Throwable result;
+        long id = 99L;
 
         //Act
-        result = facade.getJokeById(99L);
+        result = assertThrows(IllegalArgumentException.class, () -> {
+            facade.getJokeById(id);
+        });
 
         //Assert
-        Assertions.assertNull(result);
-        assertEquals(expResult, result); //does the same as above
+        Assertions.assertNotNull(result);
+        assertEquals(expResult.getCause(), result.getCause());
     }
 
     @Test

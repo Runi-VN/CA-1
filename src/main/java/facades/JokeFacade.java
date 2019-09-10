@@ -45,10 +45,14 @@ public class JokeFacade {
     public long getJokeCount() {
         EntityManager em = getEntityManager();
         try {
-            return (long) em.createQuery("SELECT COUNT(r) FROM Joke r").getSingleResult();
+            Long result = (long) em.createQuery("SELECT COUNT(r) FROM Joke r").getSingleResult();
+            if (result == 0) {
+                throw new IllegalStateException("Database is empty");
+            }
+            return result;
         } catch (Exception ex) {
             //em.getTransaction().rollback();
-            throw new IllegalArgumentException("Could not get joke count" + ex.getMessage());
+            throw new IllegalArgumentException("Could not get joke count -> " + ex.getMessage());
         } finally {
             em.close();
         }
@@ -63,10 +67,15 @@ public class JokeFacade {
     public List<Joke> getAllJokes() {
         EntityManager em = getEntityManager();
         try {
-            return em.createQuery("SELECT r FROM Joke r", Joke.class).getResultList();
+            List<Joke> result = em.createQuery("SELECT r FROM Joke r", Joke.class).getResultList();
+            if (result == null || result.isEmpty()) {
+                throw new IllegalStateException("Database is empty");
+            } else {
+                return result;
+            }
         } catch (Exception ex) {
             //em.getTransaction().rollback();
-            throw new IllegalArgumentException("Could not get all jokes" + ex.getMessage());
+            throw new IllegalArgumentException("Could not get all jokes -> " + ex.getMessage());
         } finally {
             em.close();
         }
@@ -80,10 +89,15 @@ public class JokeFacade {
     public List<JokeDTO> getAllJokesAsDTO() {
         EntityManager em = getEntityManager();
         try {
-            return em.createQuery("SELECT NEW dto.JokeDTO(j) FROM Joke j", JokeDTO.class).getResultList();
+            List<JokeDTO> result = em.createQuery("SELECT NEW dto.JokeDTO(j) FROM Joke j", JokeDTO.class).getResultList();
+            if (result == null || result.isEmpty()) {
+                throw new IllegalArgumentException("Database is empty. (DTO)");
+            } else {
+                return result;
+            }
         } catch (Exception ex) {
             //em.getTransaction().rollback();
-            throw new IllegalArgumentException("Could not get all jokes (DTO)" + ex.getMessage());
+            throw new IllegalArgumentException("Could not get all jokes (DTO) -> " + ex.getMessage());
         } finally {
             em.close();
         }
@@ -101,10 +115,14 @@ public class JokeFacade {
     public Joke getJokeById(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return em.find(Joke.class, id);
+            Joke result = em.find(Joke.class, id);
+            if (result == null) {
+                throw new IllegalStateException("Database is empty or joke doesn't exist.");
+            }
+            return result;
         } catch (Exception ex) {
             //em.getTransaction().rollback();
-            throw new IllegalArgumentException("Could not get joke by ID" + ex.getMessage());
+            throw new IllegalArgumentException("Could not get joke by ID -> " + ex.getMessage());
         } finally {
             em.close();
         }
@@ -119,10 +137,16 @@ public class JokeFacade {
     public JokeDTO getJokeByIdAsDTO(Long id) {
         EntityManager em = getEntityManager();
         try {
-            return new JokeDTO(em.find(Joke.class, id));
+            Joke result = em.find(Joke.class, id);
+            if (result == null) {
+                throw new IllegalStateException("Database is empty or joke doesn't exist.");
+            } else {
+                return new JokeDTO(result);
+            }
+
         } catch (Exception ex) {
             //em.getTransaction().rollback();
-            throw new IllegalArgumentException("Could not get joke by ID" + ex.getMessage());
+            throw new IllegalArgumentException("Could not get joke (DTO) by ID -> " + ex.getMessage());
         } finally {
             em.close();
         }
@@ -145,7 +169,7 @@ public class JokeFacade {
             return em.find(Joke.class, id);
         } catch (Exception ex) {
             //em.getTransaction().rollback();
-            throw new IllegalArgumentException("Could not get joke by random" + ex.getMessage());
+            throw new IllegalArgumentException("Could not get joke by random -> " + ex.getMessage());
         } finally {
             em.close();
         }
@@ -168,7 +192,7 @@ public class JokeFacade {
             return new JokeDTO(em.find(Joke.class, id));
         } catch (Exception ex) {
             //em.getTransaction().rollback();
-            throw new IllegalArgumentException("Could not get joke by ID" + ex.getMessage());
+            throw new IllegalArgumentException("Could not get joke by ID (DTO) -> " + ex.getMessage());
         } finally {
             em.close();
         }
@@ -185,10 +209,16 @@ public class JokeFacade {
     private List<Long> getJokeIds() {
         EntityManager em = getEntityManager();
         try {
-            return em.createQuery("SELECT r.id FROM Joke r").getResultList();
+            List<Long> result = em.createQuery("SELECT r.id FROM Joke r").getResultList();
+            if (result == null || result.isEmpty())
+            {
+                throw new IllegalStateException("Database is empty");
+            } else{
+                return result;
+            }
         } catch (Exception ex) {
             //em.getTransaction().rollback();
-            throw new IllegalArgumentException("Could not get joke IDs" + ex.getMessage());
+            throw new IllegalArgumentException("Could not get joke IDs -> " + ex.getMessage());
         } finally {
             em.close();
         }
