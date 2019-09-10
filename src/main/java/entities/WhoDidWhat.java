@@ -7,6 +7,7 @@ package entities;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.Objects;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -27,7 +28,7 @@ public class WhoDidWhat implements Serializable {
     // DEFAULT EMPTY CONSTRUCTOR
     public WhoDidWhat() {
     }
-    
+
     // FIELDS
     private static final long serialVersionUID = 1L;
     @Id
@@ -39,7 +40,7 @@ public class WhoDidWhat implements Serializable {
     public WhoDidWhat(String name) {
         this.name = name;
     }
-    
+
     public List<String> getDone() {
         return done;
     }
@@ -47,12 +48,12 @@ public class WhoDidWhat implements Serializable {
     public void setDone(List<String> done) {
         this.done = done;
     }
-    
+
     public List<String> addDone(String whatIDid) {
         done.add(whatIDid);
         return done;
     }
-    
+
     /**
      * Get the value of name
      *
@@ -77,6 +78,40 @@ public class WhoDidWhat implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    @Override
+    public int hashCode() {
+        int hash = 3;
+        hash = 47 * hash + Objects.hashCode(this.name);
+        hash = 47 * hash + Objects.hashCode(this.done);
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+        if (getClass() != obj.getClass()) {
+            return false;
+        }
+        final WhoDidWhat other = (WhoDidWhat) obj;
+        if (!Objects.equals(this.name, other.name)) {
+            return false;
+        }
+        if (!Objects.equals(this.done, other.done)) {
+            return false;
+        }
+        return true;
+    }
+
+    @Override
+    public String toString() {
+        return "WhoDidWhat{" + "id=" + id + ", name=" + name + ", done=" + done + '}';
     }
 
 }
