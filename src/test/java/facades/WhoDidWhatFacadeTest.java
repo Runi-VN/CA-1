@@ -8,6 +8,7 @@ import utils.EMF_Creator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
+import javax.transaction.Transactional;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -32,15 +33,6 @@ public class WhoDidWhatFacadeTest {
     @BeforeAll
     public static void setUpClass() {
         emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST, Strategy.DROP_AND_CREATE);
-    }
-
-    @AfterAll
-    public static void tearDownClass() {
-
-    }
-
-    @BeforeEach
-    public void setUp() {
         facade = WhoDidWhatFacade.getWhoDidWhatFacade(emf);
 
         testTask = new WhoDidWhat("Malte");
@@ -57,11 +49,6 @@ public class WhoDidWhatFacadeTest {
         testList.add(testTwo);
 
         EntityManager em = emf.createEntityManager();
-
-        em.getTransaction().begin();
-        em.createNativeQuery("DELETE FROM WHODIDWHAT").executeUpdate();
-        em.getTransaction().commit();
-        
         try {
             for (WhoDidWhat obj : testList) {
                 em.getTransaction().begin();
@@ -73,12 +60,23 @@ public class WhoDidWhatFacadeTest {
         }
     }
 
+    @AfterAll
+    public static void tearDownClass() {
+
+    }
+
+    @BeforeEach
+    public void setUp() {
+
+    }
+
     @AfterEach
     public void tearDown() {
 
     }
 
     @Test
+    @Transactional
     public void testGetWorkDoneByName() throws Exception {
         // Arrange
         WhoDidWhatDTO expResult = new WhoDidWhatDTO(testTask);
@@ -90,10 +88,11 @@ public class WhoDidWhatFacadeTest {
     }
 
     @Test
+    @Transactional
     public void testGetAllWorkDone() throws Exception {
         // Arrange
         List<WhoDidWhatDTO> expResult = new ArrayList<>();
-        for (WhoDidWhat whodidwhat: testList) {
+        for (WhoDidWhat whodidwhat : testList) {
             expResult.add(new WhoDidWhatDTO(whodidwhat));
         }
         // Act
@@ -101,9 +100,19 @@ public class WhoDidWhatFacadeTest {
         // Assert
         assertEquals(expResult, result);
     }
-    
-    
-    
+
+    @Test
+    @Transactional
+    public void testMakeWork() throws Exception {
+        // Arrange
+        WhoDidWhat expResult = new WhoDidWhat("Test");
+        expResult.addDone("Everything");
+        // Act
+        WhoDidWhat result = facade.makeWork("Test", "Everything");
+        // Assert
+        assertEquals(expResult, result);
+    }
+
 //    @Test
 //    public void testGetMovieByName() throws Exception {
 //        //Arrange 

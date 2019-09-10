@@ -39,21 +39,22 @@ public class WhoDidWhatFacade {
 
     /**
      * Get Work Done by Name
+     *
      * @param name of the student. Either Camilla, Malte, Asger or Runì
      * @return WhoDidWhatDTO
-     * @throws Exception 
+     * @throws Exception
      */
-    public WhoDidWhatDTO getWorkDoneByName(String name) throws Exception {
+    public WhoDidWhatDTO getWorkDoneByName(String name) throws IllegalArgumentException {
         EntityManager em = getEntityManager();
         try {
             return new WhoDidWhatDTO(em.createNamedQuery("WhoDidWhat.getByName", WhoDidWhat.class).setParameter("name", name).getSingleResult());
         } catch (Exception e) {
-            throw new Exception("No Student found by that name.");
+            throw new IllegalArgumentException("No Student found by that name.");
         } finally {
             em.close();
         }
     }
-    
+
     public List<WhoDidWhatDTO> getAllWorkDone() {
         EntityManager em = getEntityManager();
         try {
@@ -63,6 +64,28 @@ public class WhoDidWhatFacade {
                 result.add(new WhoDidWhatDTO(who));
             });
             return result;
+        } finally {
+            em.close();
+        }
+    }
+
+    public WhoDidWhat makeWork(String name, String work) {
+        EntityManager em = getEntityManager();
+        try {
+            try {
+                WhoDidWhat student = em.createNamedQuery("WhoDidWhat.getByName", WhoDidWhat.class).setParameter("name", name).getSingleResult();
+                em.getTransaction().begin();
+                student.addDone(work);
+                em.getTransaction().commit();
+                return student;
+            } catch (Exception e) {
+                WhoDidWhat student = new WhoDidWhat(name);
+                student.addDone(work);
+                em.getTransaction().begin();
+                em.persist(student);
+                em.getTransaction().commit();
+                return student;
+            }
         } finally {
             em.close();
         }
@@ -168,6 +191,4 @@ public class WhoDidWhatFacade {
 //            em.close();
 //        }
 //    }
-
-    
 }
