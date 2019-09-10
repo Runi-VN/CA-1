@@ -33,7 +33,6 @@ public class JokeFacade {
         return emf.createEntityManager();
     }
     
-    //TODO Remove/Change this before use
     public long getJokeCount(){
         EntityManager em = getEntityManager();
         try{

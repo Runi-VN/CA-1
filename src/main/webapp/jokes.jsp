@@ -19,10 +19,14 @@
         <link href="css/globalCSS.css" rel="stylesheet" type="text/css"/>
         <title>Jokes</title>
     </head>
-    
-    <body>
-        <h1>Hello World!</h1>
 
+    <body>
+        <h1 id="greeting"></h1>
+
+        <div id="container">
+            <span id="output"></span>
+
+        </div>
 
         <a href="index.html" id="returnLink">Return to index</a>
         <!-- Javascript import -->
