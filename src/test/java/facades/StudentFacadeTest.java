@@ -3,12 +3,9 @@ package facades;
 import dto.StudentDTO;
 import entities.Student;
 import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
-import org.junit.jupiter.api.AfterEach;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -45,7 +42,6 @@ public class StudentFacadeTest {
         query.executeUpdate();
         em.getTransaction().commit();
 
-        // Student(String studentID, String name, String github)
         ArrayList<Student> allStudents = new ArrayList();
         allStudents.add(new Student("abc-123", "Ulrikke Jensen", "www.github.com/ulrikke"));
         allStudents.add(new Student("bcd-234", "Orla Hansen", "www.github.com/orla"));
@@ -65,18 +61,12 @@ public class StudentFacadeTest {
         }
     }
 
-    /**
-     * Test of getStudentDTOById method, of class StudentFacade.
-     */
     @Test
     public void testGetStudentDTOById() throws Exception {
         StudentDTO exp = new StudentDTO(new Student("efg-567", "Rigmor Alfsen", "www.github.com/rigmor"));
         assertEquals(exp, facade.getStudentDTOById(5));
     }
 
-    /**
-     * Test of getStudentDTOByName method, of class StudentFacade.
-     */
     @Test
     public void testGetStudentDTOByName() throws Exception {
         ArrayList<StudentDTO> exp = new ArrayList();
@@ -84,18 +74,12 @@ public class StudentFacadeTest {
         assertEquals(exp, facade.getStudentDTOByName("Rigmor Alfsen"));
     }
 
-    /**
-     * Test of getStudentDTOByStudentID method, of class StudentFacade.
-     */
     @Test
     public void testGetStudentDTOByStudentID() throws Exception {
         StudentDTO exp = new StudentDTO(new Student("efg-567", "Rigmor Alfsen", "www.github.com/rigmor"));
         assertEquals(exp, facade.getStudentDTOByStudentID("efg-567"));
     }
 
-    /**
-     * Test of getAllStudentDTO method, of class StudentFacade.
-     */
     @Test
     public void testGetAllStudentDTO() {
         ArrayList<StudentDTO> exp = new ArrayList();
@@ -106,5 +90,4 @@ public class StudentFacadeTest {
         exp.add(new StudentDTO(new Student("efg-567", "Rigmor Alfsen", "www.github.com/rigmor")));
         assertEquals(exp, facade.getAllStudentDTO());
     }
-
 }
