@@ -1,5 +1,6 @@
 package facades;
 
+import entities.Joke;
 import java.util.ArrayList;
 import java.util.List;
 import utils.EMF_Creator;
@@ -11,7 +12,6 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import utils.Settings;
 import utils.EMF_Creator.DbSelector;
 import utils.EMF_Creator.Strategy;
 
@@ -28,8 +28,8 @@ public class JokeFacadeTest {
 
     @BeforeAll
     public static void setUpClassV2() {
-       emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST,Strategy.DROP_AND_CREATE);
-       facade = JokeFacade.getFacadeExample(emf);
+        emf = EMF_Creator.createEntityManagerFactory(DbSelector.TEST, Strategy.DROP_AND_CREATE);
+        facade = JokeFacade.getFacadeExample(emf);
     }
 
     @AfterAll
@@ -42,13 +42,23 @@ public class JokeFacadeTest {
     @BeforeEach
     public void setUp() {
         EntityManager em = emf.createEntityManager();
-        jokes = new ArrayList();
-        
+        jokes = new ArrayList(); //init
+
+        //add to collection
+        jokes.add(new Joke("A programmer puts two glasses on his bedside table before going to sleep. A full one, in case he gets thirsty, and an empty one, in case he doesn’t.", "https://redd.it/1kvhmz", "case-handling"));
+        jokes.add(new Joke("A programmer is heading out to the grocery store, so his wife tells him \"get a gallon of milk, and if they have eggs, get a dozen.\" He returns with 13 gallons of milk.", "https://redd.it/1kvhmz", "numbers"));
+        jokes.add(new Joke("What do programmers do before sex? Initialize <pre><code>for</code></pre>-play.", "https://redd.it/1kvhmz", "naughty"));
+        jokes.add(new Joke("A programmer heads out to the store. His wife says \"while you're out, get some milk.\"", "https://redd.it/1kvhmz", "loops"));
+
         try {
             em.getTransaction().begin();
             em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
-            
             em.getTransaction().commit();
+            for (Joke j : jokes) {
+                em.getTransaction().begin();
+                em.persist(j);
+                em.getTransaction().commit();
+            }
         } finally {
             em.close();
         }
@@ -59,7 +69,6 @@ public class JokeFacadeTest {
 //        Remove any data after each test was run
     }
 
-    // TODO: Delete or change this method 
     @Test
     public void testGetJokeCount() {
         assertEquals(jokes.size(), facade.getJokeCount(), "Expects three rows in the database");
