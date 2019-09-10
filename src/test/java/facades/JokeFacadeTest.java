@@ -7,10 +7,12 @@ import java.util.List;
 import utils.EMF_Creator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Disabled;
@@ -55,7 +57,9 @@ public class JokeFacadeTest {
 
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
+            Query query = em.createNativeQuery("truncate table CA1_test.JOKE;");
+            query.executeUpdate();
+            //em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
             em.getTransaction().commit();
             for (Joke j : jokes) {
                 em.getTransaction().begin();
@@ -74,7 +78,7 @@ public class JokeFacadeTest {
 
     @Test
     public void testGetJokeCount() {
-        assertEquals(jokes.size(), facade.getJokeCount(), "Expects three rows in the database");
+        assertEquals(jokes.size(), facade.getJokeCount(), "Expects four rows in the database");
     }
 
     @Test
@@ -135,19 +139,25 @@ public class JokeFacadeTest {
     /**
      * em.find in getJokeByID does not actually throw an exception, but returns
      * null.
+     *
+     *
+     * I made a guard for that and throw an IllegalStateException.
      */
     @Test
     public void testGetJokeByIdError() {
         //Arrange
-        Joke expResult = null;
-        Joke result;
+        Throwable expResult = new IllegalArgumentException("Could not get joke by ID -> Database is empty or joke doesn't exist.");
+        Throwable result;
+        long id = 99L;
 
         //Act
-        result = facade.getJokeById(99L);
+        result = assertThrows(IllegalArgumentException.class, () -> {
+            facade.getJokeById(id);
+        });
 
         //Assert
-        Assertions.assertNull(result);
-        assertEquals(expResult, result); //does the same as above
+        Assertions.assertNotNull(result);
+        assertEquals(expResult.getCause(), result.getCause());
     }
 
     @Test
