@@ -10,7 +10,7 @@ import javax.persistence.EntityManagerFactory;
  * Rename Class to a relevant name Add add relevant facade methods
  */
 public class JokeFacade {
-    
+
     private static JokeFacade instance;
     private static EntityManagerFactory emf;
 
@@ -30,11 +30,11 @@ public class JokeFacade {
         }
         return instance;
     }
-    
+
     private EntityManager getEntityManager() {
         return emf.createEntityManager();
     }
-    
+
     public long getJokeCount() {
         EntityManager em = getEntityManager();
         try {
@@ -42,34 +42,46 @@ public class JokeFacade {
         } catch (Exception ex) {
             //em.getTransaction().rollback();
             throw new IllegalArgumentException("Could not get joke count");
-        } finally {            
+        } finally {
             em.close();
         }
-        
+
     }
-    
+
     public List<Joke> getAllJokes() {
         EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT r FROM Joke r", Joke.class).getResultList();
         } catch (Exception ex) {
             //em.getTransaction().rollback();
-            throw new IllegalArgumentException("Could not get all movies" + ex.getMessage());
-        } finally {            
+            throw new IllegalArgumentException("Could not get all jokes" + ex.getMessage());
+        } finally {
             em.close();
         }
     }
 
-    List<Joke> getAllJokesAsDTO() {
+    public List<Joke> getAllJokesAsDTO() {
         EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT NEW dto.JokeDTO(j) FROM Joke j", Joke.class).getResultList();
         } catch (Exception ex) {
             //em.getTransaction().rollback();
-            throw new IllegalArgumentException("Could not get all movies" + ex.getMessage());
-        } finally {            
+            throw new IllegalArgumentException("Could not get all jokes (DTO)" + ex.getMessage());
+        } finally {
             em.close();
         }
     }
-    
+
+    public Joke getJokeById(Long id) {
+        EntityManager em = getEntityManager();
+        try {
+            return em.find(Joke.class, id);
+        } catch (Exception ex) {
+            //em.getTransaction().rollback();
+            throw new IllegalArgumentException("Could not get joke by ID" + ex.getMessage());
+        } finally {
+            em.close();
+        }
+    }
+
 }

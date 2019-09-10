@@ -114,14 +114,26 @@ public class JokeFacadeTest {
         result = facade.getAllJokesAsDTO();
 
         //Assert
-        System.out.println("EXPECTED\n" + expResult);
-        System.out.println("\nRESULT\n" + result);
         Assertions.assertNotNull(result);
         assertEquals(expResult, result);
     }
 
     @Test
-    public void testGetJokeByID() {
+    public void testGetJokeById() {
+        //Arrange
+        Joke expResult = jokes.get(2);
+        Joke result;
+
+        //Act
+        result = facade.getJokeById(expResult.getId());
+
+        //Assert
+        Assertions.assertNotNull(result);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testGetJokeByIdError() {
         //Arrange
 
         //Act
@@ -129,15 +141,7 @@ public class JokeFacadeTest {
     }
 
     @Test
-    public void testGetJokeByIDError() {
-        //Arrange
-
-        //Act
-        //Assert
-    }
-
-    @Test
-    public void testGetJokeByIDAsDTO() {
+    public void testGetJokeByIdAsDTO() {
         //Arrange
 
         //Act
