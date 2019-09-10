@@ -101,4 +101,9 @@ public class Joke implements Serializable {
         return true;
     }
 
+    @Override
+    public String toString() {
+        return "Joke{" + " id = " + id + "\n joke = " + joke + "\n reference = " + reference + "\n type = " + type + "\n rating = " + rating + '}';
+    }
+
 }
