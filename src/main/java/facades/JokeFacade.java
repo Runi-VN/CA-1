@@ -3,6 +3,7 @@ package facades;
 import dto.JokeDTO;
 import entities.Joke;
 import java.util.List;
+import java.util.Random;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 
@@ -42,7 +43,7 @@ public class JokeFacade {
             return (long) em.createQuery("SELECT COUNT(r) FROM Joke r").getSingleResult();
         } catch (Exception ex) {
             //em.getTransaction().rollback();
-            throw new IllegalArgumentException("Could not get joke count");
+            throw new IllegalArgumentException("Could not get joke count" + ex.getMessage());
         } finally {
             em.close();
         }
@@ -75,8 +76,9 @@ public class JokeFacade {
 
     /**
      * em.find doesn't actually throw an exception, it just returns null...
+     *
      * @param id
-     * @return 
+     * @return
      */
     public Joke getJokeById(Long id) {
         EntityManager em = getEntityManager();
@@ -94,6 +96,36 @@ public class JokeFacade {
         EntityManager em = getEntityManager();
         try {
             return new JokeDTO(em.find(Joke.class, id));
+        } catch (Exception ex) {
+            //em.getTransaction().rollback();
+            throw new IllegalArgumentException("Could not get joke by ID" + ex.getMessage());
+        } finally {
+            em.close();
+        }
+    }
+
+    public Joke getJokeByRandom() {
+        EntityManager em = getEntityManager();
+        Random rnd = new Random();
+
+        List<Long> jokeIds = getJokeIds(); //get list of all IDs from database
+        int rndElement = rnd.nextInt(jokeIds.size()); //pick a random element within this collection
+
+        long id = jokeIds.get(rndElement); //use the random element for the return object.
+        try {
+            return em.find(Joke.class, id);
+        } catch (Exception ex) {
+            //em.getTransaction().rollback();
+            throw new IllegalArgumentException("Could not get joke by ID" + ex.getMessage());
+        } finally {
+            em.close();
+        }
+    }
+
+    private List<Long> getJokeIds() {
+        EntityManager em = getEntityManager();
+        try {
+            return em.createQuery("SELECT r.id FROM Joke r").getResultList();
         } catch (Exception ex) {
             //em.getTransaction().rollback();
             throw new IllegalArgumentException("Could not get joke by ID" + ex.getMessage());

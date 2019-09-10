@@ -133,7 +133,8 @@ public class JokeFacadeTest {
     }
 
     /**
-     * em.find in getJokeByID does not actually throw an exception, but returns null.
+     * em.find in getJokeByID does not actually throw an exception, but returns
+     * null.
      */
     @Test
     public void testGetJokeByIdError() {
@@ -164,7 +165,20 @@ public class JokeFacadeTest {
     }
 
     @Test
-    public void testGetJokeRandom() {
+    public void testGetJokeByRandom() {
+        //Arrange
+        //Joke expResult;
+        Joke result;
+
+        //Act
+        result = facade.getJokeByRandom();
+        System.out.println("RANDOM JOKE\n" + result);
+        //Assert
+        Assertions.assertNotNull(result);
+    }
+
+    @Test
+    public void testGetJokeByRandomError() {
         //Arrange
 
         //Act
@@ -172,15 +186,7 @@ public class JokeFacadeTest {
     }
 
     @Test
-    public void testGetJokeRandomError() {
-        //Arrange
-
-        //Act
-        //Assert
-    }
-
-    @Test
-    public void testGetJokeRandomAsDTO() {
+    public void testGetJokeByRandomAsDTO() {
         //Arrange
 
         //Act
