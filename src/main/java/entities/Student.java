@@ -17,7 +17,7 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
     @NamedQuery(name = "Member.getAll", query = "SELECT m FROM Member m"),
     @NamedQuery(name = "Member.getByName", query = "SELECT m FROM Member m WHERE m.name LIKE :name"),})
-public class Member implements Serializable {
+public class Student implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -27,10 +27,10 @@ public class Member implements Serializable {
     private String name;
     private String github;
 
-    public Member() {
+    public Student() {
     }
 
-    public Member(String studentID, String name, String github, double rating) {
+    public Student(String studentID, String name, String github, double rating) {
         this.studentID = studentID;
         this.name = name;
         this.github = github;
@@ -89,7 +89,7 @@ public class Member implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Member other = (Member) obj;
+        final Student other = (Student) obj;
         if (!Objects.equals(this.studentID, other.studentID)) {
             return false;
         }

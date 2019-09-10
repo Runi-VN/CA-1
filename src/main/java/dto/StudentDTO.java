@@ -1,23 +1,23 @@
 package dto;
 
-import entities.Member;
+import entities.Student;
 import java.util.Objects;
 /**
  *
  * @author Camilla
  */
-public class MemberDTO {
+public class StudentDTO {
     private String studentID;
     private String name;
     private String github;
     
-    public MemberDTO(Member member) {
+    public StudentDTO(Student member) {
         this.studentID = member.getStudentID();
         this.name = member.getName();
         this.github = member.getGithub();
     }
 
-    public MemberDTO() {
+    public StudentDTO() {
     }
 
     public String getStudentID() {
@@ -64,7 +64,7 @@ public class MemberDTO {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final MemberDTO other = (MemberDTO) obj;
+        final StudentDTO other = (StudentDTO) obj;
         if (!Objects.equals(this.studentID, other.studentID)) {
             return false;
         }
