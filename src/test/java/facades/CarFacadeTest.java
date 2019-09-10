@@ -83,6 +83,21 @@ public class CarFacadeTest {
     }
     
     @Test
+    public void testAddCar()
+    {
+        System.out.println("addCar");
+        Car car = new Car(2012, "Pagani", "Zonda", 6544999.99, 
+                    "Basically new", "Johnny Ringo");
+        Car expResult = car;
+        //The addCar() method sets the ID of the car parameter which means we 
+        //don't need to set the ID manually
+        Car result = facade.addCar(car);
+        System.out.println("expResult: \n" + car);
+        System.out.println("Result: \n" + result);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
     public void testFindCarByIDAllInfo()
     {
         System.out.println("findCarByIDAllInfo");
@@ -93,11 +108,31 @@ public class CarFacadeTest {
     }
     
     @Test
+    public void testNegativeFindCarByIDAllInfo()
+    {
+        System.out.println("findCarByIDAllInfo");
+        Long id = 5L;
+        Car expResult = null;
+        Car result = facade.findCarByIDAllInfo(id);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
     public void testFindCarByID()
     {
         System.out.println("findCarByID");
         Long id = 2L;
         CarDTO expResult = new CarDTO(c2);
+        CarDTO result = facade.findCarByID(id);
+        assertEquals(expResult, result);
+    }
+    
+    @Test
+    public void testNegativeFindCarByID()
+    {
+        System.out.println("findCarByID");
+        Long id = 6L;
+        CarDTO expResult = null;
         CarDTO result = facade.findCarByID(id);
         assertEquals(expResult, result);
     }
