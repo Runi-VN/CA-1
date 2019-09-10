@@ -17,7 +17,7 @@ import javax.persistence.NamedQuery;
 @NamedQueries({
     @NamedQuery(name = "Member.getAll", query = "SELECT m FROM Member m"),
     @NamedQuery(name = "Member.getByName", query = "SELECT m FROM Member m WHERE m.name LIKE :name"),})
-public class Members implements Serializable {
+public class Member implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -26,16 +26,14 @@ public class Members implements Serializable {
     private String studentID;
     private String name;
     private String github;
-    private double rating;
 
-    public Members() {
+    public Member() {
     }
-    
-    public Members(String studentID, String name, String github, double rating) {
+
+    public Member(String studentID, String name, String github, double rating) {
         this.studentID = studentID;
         this.name = name;
         this.github = github;
-        this.rating = rating;
     }
 
     public Long getId() {
@@ -70,12 +68,14 @@ public class Members implements Serializable {
         this.github = github;
     }
 
-    public double getRating() {
-        return rating;
-    }
-
-    public void setRating(double rating) {
-        this.rating = rating;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        hash = 29 * hash + Objects.hashCode(this.id);
+        hash = 29 * hash + Objects.hashCode(this.studentID);
+        hash = 29 * hash + Objects.hashCode(this.name);
+        hash = 29 * hash + Objects.hashCode(this.github);
+        return hash;
     }
 
     @Override
@@ -89,10 +89,7 @@ public class Members implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Members other = (Members) obj;
-        if (Double.doubleToLongBits(this.rating) != Double.doubleToLongBits(other.rating)) {
-            return false;
-        }
+        final Member other = (Member) obj;
         if (!Objects.equals(this.studentID, other.studentID)) {
             return false;
         }
@@ -108,14 +105,4 @@ public class Members implements Serializable {
         return true;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        hash = 79 * hash + Objects.hashCode(this.id);
-        hash = 79 * hash + Objects.hashCode(this.studentID);
-        hash = 79 * hash + Objects.hashCode(this.name);
-        hash = 79 * hash + Objects.hashCode(this.github);
-        hash = 79 * hash + (int) (Double.doubleToLongBits(this.rating) ^ (Double.doubleToLongBits(this.rating) >>> 32));
-        return hash;
-    }
 }
