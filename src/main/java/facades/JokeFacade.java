@@ -37,6 +37,11 @@ public class JokeFacade {
         return emf.createEntityManager();
     }
 
+    /**
+     * Get amount of jokes in the database
+     *
+     * @return
+     */
     public long getJokeCount() {
         EntityManager em = getEntityManager();
         try {
@@ -50,6 +55,11 @@ public class JokeFacade {
 
     }
 
+    /**
+     * Returns all jokes in the database
+     *
+     * @return
+     */
     public List<Joke> getAllJokes() {
         EntityManager em = getEntityManager();
         try {
@@ -62,6 +72,11 @@ public class JokeFacade {
         }
     }
 
+    /**
+     * Returns all jokes in the database, but as their DTO object
+     *
+     * @return
+     */
     public List<JokeDTO> getAllJokesAsDTO() {
         EntityManager em = getEntityManager();
         try {
@@ -75,10 +90,13 @@ public class JokeFacade {
     }
 
     /**
+     *
+     * gets joke based on ID
+     *
      * em.find doesn't actually throw an exception, it just returns null...
      *
      * @param id
-     * @return
+     * @return Joke.java
      */
     public Joke getJokeById(Long id) {
         EntityManager em = getEntityManager();
@@ -92,6 +110,12 @@ public class JokeFacade {
         }
     }
 
+    /**
+     * gets joke based on ID
+     *
+     * @param id
+     * @return JokeDTO.java
+     */
     public JokeDTO getJokeByIdAsDTO(Long id) {
         EntityManager em = getEntityManager();
         try {
@@ -104,6 +128,11 @@ public class JokeFacade {
         }
     }
 
+    /**
+     * Gets a joke by random of the available ones in the database
+     *
+     * @return Joke.java
+     */
     public Joke getJokeByRandom() {
         EntityManager em = getEntityManager();
         Random rnd = new Random();
@@ -116,12 +145,17 @@ public class JokeFacade {
             return em.find(Joke.class, id);
         } catch (Exception ex) {
             //em.getTransaction().rollback();
-            throw new IllegalArgumentException("Could not get joke by ID" + ex.getMessage());
+            throw new IllegalArgumentException("Could not get joke by random" + ex.getMessage());
         } finally {
             em.close();
         }
     }
 
+    /**
+     * Gets a joke by random of the available ones in the database
+     *
+     * @return JokeDTO.java
+     */
     public JokeDTO getJokeByRandomAsDTO() {
         EntityManager em = getEntityManager();
         Random rnd = new Random();
@@ -140,13 +174,21 @@ public class JokeFacade {
         }
     }
 
+    /**
+     * Helper method to get available joke IDs from the database, to pick one at
+     * random.
+     *
+     * Used by getJokeByRandom & getJokeByRandomAsDTO.
+     *
+     * @return
+     */
     private List<Long> getJokeIds() {
         EntityManager em = getEntityManager();
         try {
             return em.createQuery("SELECT r.id FROM Joke r").getResultList();
         } catch (Exception ex) {
             //em.getTransaction().rollback();
-            throw new IllegalArgumentException("Could not get joke by ID" + ex.getMessage());
+            throw new IllegalArgumentException("Could not get joke IDs" + ex.getMessage());
         } finally {
             em.close();
         }

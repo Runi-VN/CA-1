@@ -147,7 +147,7 @@ public class JokeFacadeTest {
 
         //Assert
         Assertions.assertNull(result);
-        assertEquals(expResult, result);
+        assertEquals(expResult, result); //does the same as above
     }
 
     @Test
@@ -167,14 +167,14 @@ public class JokeFacadeTest {
     @Test
     public void testGetJokeByRandom() {
         //Arrange
-        //Joke expResult;
+        //Joke expResult; //shrug
         Joke result;
 
         //Act
         result = facade.getJokeByRandom();
         System.out.println("RANDOM JOKE\n" + result);
         //Assert
-        Assertions.assertNotNull(result);
+        Assertions.assertNotNull(result); //would be null if nothing was found.
     }
 
     @Disabled
@@ -189,13 +189,13 @@ public class JokeFacadeTest {
     @Test
     public void testGetJokeByRandomAsDTO() {
         //Arrange
-        //Joke expResult;
+        //Joke expResult; //shrug
         JokeDTO result;
 
         //Act
         result = facade.getJokeByRandomAsDTO();
         //Assert
-        Assertions.assertNotNull(result);
+        Assertions.assertNotNull(result); //would be null if nothing was found.
     }
 
 }
