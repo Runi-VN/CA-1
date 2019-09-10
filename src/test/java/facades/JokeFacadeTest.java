@@ -45,10 +45,10 @@ public class JokeFacadeTest {
         jokes = new ArrayList(); //init
 
         //add to collection
-        jokes.add(new Joke("A programmer puts two glasses on his bedside table before going to sleep. A full one, in case he gets thirsty, and an empty one, in case he doesn’t.", "https://redd.it/1kvhmz", "case-handling"));
-        jokes.add(new Joke("A programmer is heading out to the grocery store, so his wife tells him \"get a gallon of milk, and if they have eggs, get a dozen.\" He returns with 13 gallons of milk.", "https://redd.it/1kvhmz", "numbers"));
-        jokes.add(new Joke("What do programmers do before sex? Initialize <pre><code>for</code></pre>-play.", "https://redd.it/1kvhmz", "naughty"));
-        jokes.add(new Joke("A programmer heads out to the store. His wife says \"while you're out, get some milk.\"", "https://redd.it/1kvhmz", "loops"));
+        jokes.add(new Joke("A programmer puts two glasses on his bedside table before going to sleep. A full one, in case he gets thirsty, and an empty one, in case he doesn’t.", "https://redd.it/1kvhmz", "case-handling", 10));
+        jokes.add(new Joke("A programmer is heading out to the grocery store, so his wife tells him \"get a gallon of milk, and if they have eggs, get a dozen.\" He returns with 13 gallons of milk.", "https://redd.it/1kvhmz", "numbers", 9));
+        jokes.add(new Joke("What do programmers do before sex? Initialize <pre><code>for</code></pre>-play.", "https://redd.it/1kvhmz", "naughty", 7));
+        jokes.add(new Joke("A programmer heads out to the store. His wife says \"while you're out, get some milk.\"", "https://redd.it/1kvhmz", "loops", 5));
 
         try {
             em.getTransaction().begin();

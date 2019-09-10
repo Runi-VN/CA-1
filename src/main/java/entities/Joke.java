@@ -19,17 +19,18 @@ public class Joke implements Serializable {
     private String joke;
     private String reference;
     private String type;
+    private int rating;
 
     public Joke() {
     }
 
-    public Joke(String joke, String reference, String type) {
+    public Joke(String joke, String reference, String type, int rating) {
         this.joke = joke;
         this.reference = reference;
         this.type = type;
+        this.rating = rating;
     }
     
-
     public Long getId() {
         return id;
     }
@@ -62,6 +63,14 @@ public class Joke implements Serializable {
         this.type = type;
     }
 
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
+    }
+
     @Override
     public boolean equals(Object obj) {
         if (this == obj) {
@@ -74,6 +83,9 @@ public class Joke implements Serializable {
             return false;
         }
         final Joke other = (Joke) obj;
+        if (this.rating != other.rating) {
+            return false;
+        }
         if (!Objects.equals(this.joke, other.joke)) {
             return false;
         }
@@ -83,10 +95,11 @@ public class Joke implements Serializable {
         if (!Objects.equals(this.type, other.type)) {
             return false;
         }
+        if (!Objects.equals(this.id, other.id)) {
+            return false;
+        }
         return true;
     }
-
-  
     
-
+    
 }
