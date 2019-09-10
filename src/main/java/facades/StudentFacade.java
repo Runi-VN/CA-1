@@ -44,7 +44,12 @@ public class StudentFacade {
     public List<StudentDTO> getStudentDTOByName(String name) throws Exception {
         EntityManager em = getEntityManager();
         try {
-            return em.createNamedQuery("Student.getByName").getResultList();
+            List<Student> students = em.createNamedQuery("Student.getByName").setParameter("name", name).getResultList();
+            List<StudentDTO> result = new ArrayList<>();
+            students.forEach((student) -> {
+                result.add(new StudentDTO(student));
+            });
+            return result;
         } finally {
             em.close();
         }
@@ -52,7 +57,7 @@ public class StudentFacade {
     public StudentDTO getStudentDTOByStudentID(String studentID) throws Exception {
         EntityManager em = getEntityManager();
         try {
-            Student student = em.createNamedQuery("Student.getByStudentID", Student.class).getSingleResult();
+            Student student = em.createNamedQuery("Student.getByStudentID", Student.class).setParameter("studentID", studentID).getSingleResult();
             return new StudentDTO(student);
         } finally {
             em.close();

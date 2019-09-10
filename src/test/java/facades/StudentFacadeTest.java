@@ -41,7 +41,7 @@ public class StudentFacadeTest {
         EntityManager em = emf.createEntityManager();
 
         em.getTransaction().begin();
-        Query query = em.createNativeQuery("truncate table startcode_test.MOVIE;");
+        Query query = em.createNativeQuery("truncate table CA1_test.STUDENT;");
         query.executeUpdate();
         em.getTransaction().commit();
 
@@ -70,14 +70,8 @@ public class StudentFacadeTest {
      */
     @Test
     public void testGetStudentDTOById() throws Exception {
-        System.out.println("getStudentDTOById");
-        long id = 0L;
-        StudentFacade instance = null;
-        StudentDTO expResult = null;
-        StudentDTO result = instance.getStudentDTOById(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        StudentDTO exp = new StudentDTO(new Student("efg-567", "Rigmor Alfsen", "www.github.com/rigmor"));
+        assertEquals(exp, facade.getStudentDTOById(5));
     }
 
     /**
@@ -85,14 +79,9 @@ public class StudentFacadeTest {
      */
     @Test
     public void testGetStudentDTOByName() throws Exception {
-        System.out.println("getStudentDTOByName");
-        String name = "";
-        StudentFacade instance = null;
-        List<StudentDTO> expResult = null;
-        List<StudentDTO> result = instance.getStudentDTOByName(name);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ArrayList<StudentDTO> exp = new ArrayList();
+        exp.add(new StudentDTO(new Student("efg-567", "Rigmor Alfsen", "www.github.com/rigmor")));
+        assertEquals(exp, facade.getStudentDTOByName("Rigmor Alfsen"));
     }
 
     /**
@@ -100,14 +89,8 @@ public class StudentFacadeTest {
      */
     @Test
     public void testGetStudentDTOByStudentID() throws Exception {
-        System.out.println("getStudentDTOByStudentID");
-        String studentID = "";
-        StudentFacade instance = null;
-        StudentDTO expResult = null;
-        StudentDTO result = instance.getStudentDTOByStudentID(studentID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        StudentDTO exp = new StudentDTO(new Student("efg-567", "Rigmor Alfsen", "www.github.com/rigmor"));
+        assertEquals(exp, facade.getStudentDTOByStudentID("efg-567"));
     }
 
     /**
@@ -115,13 +98,13 @@ public class StudentFacadeTest {
      */
     @Test
     public void testGetAllStudentDTO() {
-        System.out.println("getAllStudentDTO");
-        StudentFacade instance = null;
-        List<StudentDTO> expResult = null;
-        List<StudentDTO> result = instance.getAllStudentDTO();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
+        ArrayList<StudentDTO> exp = new ArrayList();
+        exp.add(new StudentDTO(new Student("abc-123", "Ulrikke Jensen", "www.github.com/ulrikke")));
+        exp.add(new StudentDTO(new Student("bcd-234", "Orla Hansen", "www.github.com/orla")));
+        exp.add(new StudentDTO(new Student("cde-345", "Werner Bo", "www.github.com/werner")));
+        exp.add(new StudentDTO(new Student("def-456", "Gerda Sørensen", "www.github.com/gerda")));
+        exp.add(new StudentDTO(new Student("efg-567", "Rigmor Alfsen", "www.github.com/rigmor")));
+        assertEquals(exp, facade.getAllStudentDTO());
     }
 
 }
