@@ -1,6 +1,14 @@
 package entities;
 
+import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Objects;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 
 /**
  *
@@ -9,8 +17,7 @@ import java.util.Objects;
 @Entity
 @NamedQueries({
     @NamedQuery(name = "Member.getAll", query = "SELECT m FROM Member m"),
-    @NamedQuery(name = "Member.getByName", query = "SELECT m FROM Member m WHERE m.name LIKE :name"),
-})
+    @NamedQuery(name = "Member.getByName", query = "SELECT m FROM Member m WHERE m.name LIKE :name"),})
 public class Members implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,6 +29,9 @@ public class Members implements Serializable {
     private String github;
     private double rating;
 
+    public Members() {
+    }
+    
     public Members(String studentID, String name, String github, double rating) {
         this.studentID = studentID;
         this.name = name;
@@ -109,5 +119,4 @@ public class Members implements Serializable {
         }
         return true;
     }
-
-    
+}
