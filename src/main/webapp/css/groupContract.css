@@ -1,0 +1,80 @@
+.container {
+    display: flex;
+}
+
+#GroupContractContent {
+    order: 2;
+}
+
+#WhoDidWhat {
+    order: 1;
+}
+
+.c1 {
+    margin-left: 36pt;
+    padding-top: 0pt;
+    padding-left: 0pt;
+    padding-bottom: 10pt;
+    line-height: 1.0;
+    text-align: left;
+}
+
+.c4 {
+    font-weight: 700;
+    vertical-align: baseline;
+    font-size: 10pt;
+}
+
+.c9 {
+    font-weight: 400;
+    vertical-align: baseline;
+    font-size: 12pt;
+}
+
+.c2 {
+    font-weight: 400;
+    vertical-align: baseline;
+    font-size: 10pt;
+}
+
+.c3 {
+    padding-top: 0pt;
+    padding-bottom: 10pt;
+    line-height: 1.0;
+    text-align: left;
+}
+
+.c8 {
+    font-weight: 400;
+}
+
+.c5 {
+    margin-left: 72pt;
+    padding-left: 0pt;
+}
+
+.c0 {
+    padding: 0;
+    margin: 0;
+}
+
+.c6 {
+    font-size: 10pt;
+}
+
+li {
+    font-size: 11pt;
+}
+
+p {
+    margin: 0;
+    font-size: 11pt;
+}
+
+.bottomSpace {
+    height: 300px;
+}
+
+.topSpace {
+    height: 100px;
+}

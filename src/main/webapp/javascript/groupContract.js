@@ -9,9 +9,5 @@
 // Only starts once the window has loaded, 
 // so we know everything is ready for JavaScript. 
 window.onload = function () {
-    
-    
-    
-    
-    
+   
 };
