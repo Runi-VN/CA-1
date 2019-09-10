@@ -7,6 +7,7 @@ import java.util.List;
 import utils.EMF_Creator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
@@ -56,7 +57,9 @@ public class JokeFacadeTest {
 
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
+            Query query = em.createNativeQuery("truncate table CA1_test.JOKE;");
+            query.executeUpdate();
+            //em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
             em.getTransaction().commit();
             for (Joke j : jokes) {
                 em.getTransaction().begin();
