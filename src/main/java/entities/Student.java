@@ -31,7 +31,7 @@ public class Student implements Serializable {
     public Student() {
     }
 
-    public Student(String studentID, String name, String github, double rating) {
+    public Student(String studentID, String name, String github) {
         this.studentID = studentID;
         this.name = name;
         this.github = github;
