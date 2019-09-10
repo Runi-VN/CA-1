@@ -1,5 +1,6 @@
 package facades;
 
+import dto.JokeDTO;
 import entities.Joke;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.EMF_Creator.DbSelector;
 import utils.EMF_Creator.Strategy;
@@ -83,28 +85,39 @@ public class JokeFacadeTest {
 
         //Act
         result = facade.getAllJokes();
-        
+
         //Assert
         Assertions.assertNotNull(result);
         assertEquals(expResult, result);
     }
-    
-     @Test
+
+    @Disabled
+    @Test
     public void testGetAllJokesError() {
         //Arrange
 
         //Act
-        
         //Assert
     }
-    
-     @Test
+
+    @Test
     public void testGetAllJokesAsDTO() {
         //Arrange
+        List<JokeDTO> expResult = new ArrayList();
+        List<Joke> result;
+
+        for (Joke j : jokes) {
+            expResult.add(new JokeDTO(j)); //adding DTOs
+        }
 
         //Act
-        
+        result = facade.getAllJokesAsDTO();
+
         //Assert
+        System.out.println("EXPECTED\n" + expResult);
+        System.out.println("\nRESULT\n" + result);
+        Assertions.assertNotNull(result);
+        assertEquals(expResult, result);
     }
 
     @Test
@@ -112,54 +125,47 @@ public class JokeFacadeTest {
         //Arrange
 
         //Act
-        
         //Assert
     }
-    
+
     @Test
     public void testGetJokeByIDError() {
         //Arrange
 
         //Act
-        
         //Assert
     }
-    
+
     @Test
     public void testGetJokeByIDAsDTO() {
         //Arrange
 
         //Act
-        
         //Assert
     }
-    
+
     @Test
     public void testGetJokeRandom() {
         //Arrange
 
         //Act
-        
         //Assert
     }
-    
+
     @Test
     public void testGetJokeRandomError() {
         //Arrange
 
         //Act
-        
         //Assert
     }
-    
+
     @Test
     public void testGetJokeRandomAsDTO() {
         //Arrange
 
         //Act
-        
         //Assert
     }
-    
-    
+
 }

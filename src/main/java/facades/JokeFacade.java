@@ -59,5 +59,17 @@ public class JokeFacade {
             em.close();
         }
     }
+
+    List<Joke> getAllJokesAsDTO() {
+        EntityManager em = getEntityManager();
+        try {
+            return em.createQuery("SELECT NEW dto.JokeDTO(j) FROM Joke j", Joke.class).getResultList();
+        } catch (Exception ex) {
+            //em.getTransaction().rollback();
+            throw new IllegalArgumentException("Could not get all movies" + ex.getMessage());
+        } finally {            
+            em.close();
+        }
+    }
     
 }
