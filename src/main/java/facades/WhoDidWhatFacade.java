@@ -42,7 +42,7 @@ public class WhoDidWhatFacade {
      *
      * @param name of the student. Either Camilla, Malte, Asger or Runì
      * @return WhoDidWhatDTO
-     * @throws Exception
+     * @throws IllegalArgumentException
      */
     public WhoDidWhatDTO getWorkDoneByName(String name) throws IllegalArgumentException {
         EntityManager em = getEntityManager();
@@ -55,6 +55,11 @@ public class WhoDidWhatFacade {
         }
     }
 
+    /**
+     * Returns all work done by all students in the group. 
+     * @return
+     * @throws IllegalArgumentException
+     */
     public List<WhoDidWhatDTO> getAllWorkDone() {
         EntityManager em = getEntityManager();
         try {
@@ -71,15 +76,29 @@ public class WhoDidWhatFacade {
         }
     }
 
+    /**
+     * Insert work into database.
+     * @param name of the student. 
+     * @param work the student has done.
+     * @return 
+     * @throws IllegalArgumentException
+     */
     public WhoDidWhat makeWork(String name, String work) {
         EntityManager em = getEntityManager();
         try {
+            
+            /* If the student already exists in the database, then add work. */ 
             try {
                 WhoDidWhat student = em.createNamedQuery("WhoDidWhat.getByName", WhoDidWhat.class).setParameter("name", name).getSingleResult();
                 em.getTransaction().begin();
                 student.addDone(work);
                 em.getTransaction().commit();
                 return student;
+                
+            /* If the student does not exist, 
+                then create the student, 
+                add the work, 
+                persist to database. */
             } catch (Exception e) {
                 WhoDidWhat student = new WhoDidWhat(name);
                 student.addDone(work);

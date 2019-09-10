@@ -20,6 +20,7 @@ import utils.EMF_Creator.Strategy;
 
 //Uncomment the line below, to temporarily disable this test
 //@Disabled
+@Transactional
 public class WhoDidWhatFacadeTest {
 
     private static EntityManagerFactory emf;
@@ -44,7 +45,7 @@ public class WhoDidWhatFacadeTest {
         testTwo.addDone("Everything");
         testTwo.addDone("Even more");
         testTwo.addDone("So much");
-        
+
         WhoDidWhat testExisting = new WhoDidWhat("existing");
         testExisting.addDone("work");
 
@@ -80,7 +81,6 @@ public class WhoDidWhatFacadeTest {
     }
 
     @Test
-    @Transactional
     public void testGetWorkDoneByName() throws Exception {
         // Arrange
         WhoDidWhatDTO expResult = new WhoDidWhatDTO(testTask);
@@ -92,7 +92,6 @@ public class WhoDidWhatFacadeTest {
     }
 
     @Test
-    @Transactional
     public void testGetAllWorkDone() throws Exception {
         // Arrange
         List<WhoDidWhatDTO> expResult = new ArrayList<>();
@@ -106,7 +105,6 @@ public class WhoDidWhatFacadeTest {
     }
 
     @Test
-    @Transactional
     public void testMakeWorkByNewName() throws Exception {
         // Arrange
         WhoDidWhat expResult = new WhoDidWhat("Test");
@@ -116,9 +114,8 @@ public class WhoDidWhatFacadeTest {
         // Assert
         assertEquals(expResult, result);
     }
-    
+
     @Test
-    @Transactional
     public void testMakeWorkByExistingName() throws Exception {
         // Arrange
         WhoDidWhat expResult = new WhoDidWhat("existing");
