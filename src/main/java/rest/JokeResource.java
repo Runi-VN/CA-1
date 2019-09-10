@@ -22,7 +22,7 @@ public class JokeResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String demo() {
-        return "{\"msg\":\"Hello World\"}";
+        return "{\"msg\":\"ACCESS GRANTED\"}";
     }
 
     @GET
