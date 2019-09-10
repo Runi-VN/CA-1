@@ -15,8 +15,8 @@ import javax.persistence.NamedQuery;
  */
 @Entity
 @NamedQueries({
-    @NamedQuery(name = "Member.getAll", query = "SELECT m FROM Member m"),
-    @NamedQuery(name = "Member.getByName", query = "SELECT m FROM Member m WHERE m.name LIKE :name"),})
+    @NamedQuery(name = "Student.getAll", query = "SELECT m FROM Student m"),
+    @NamedQuery(name = "Student.getByName", query = "SELECT m FROM Student m WHERE m.name LIKE :name"),})
 public class Student implements Serializable {
 
     private static final long serialVersionUID = 1L;
