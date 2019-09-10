@@ -1,3 +1,6 @@
+
+/* GROUP CONTRACT CSS START */
+
 .container {
     display: flex;
 }
@@ -17,6 +20,7 @@
     padding-bottom: 10pt;
     line-height: 1.0;
     text-align: left;
+    font-size: 11pt;
 }
 
 .c4 {
@@ -42,6 +46,8 @@
     padding-bottom: 10pt;
     line-height: 1.0;
     text-align: left;
+    margin: 0;
+    font-size: 11pt;
 }
 
 .c8 {
@@ -51,6 +57,7 @@
 .c5 {
     margin-left: 72pt;
     padding-left: 0pt;
+    font-size: 11pt;
 }
 
 .c0 {
@@ -62,15 +69,6 @@
     font-size: 10pt;
 }
 
-li {
-    font-size: 11pt;
-}
-
-p {
-    margin: 0;
-    font-size: 11pt;
-}
-
 .bottomSpace {
     height: 300px;
 }
@@ -78,3 +76,5 @@ p {
 .topSpace {
     height: 100px;
 }
+
+/* GROUP CONTRACT CSS END */
