@@ -4,11 +4,12 @@
   <persistence-unit name="pu" transaction-type="RESOURCE_LOCAL">
     <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
     <class>entities.RenameMe</class>
-    <class>entities.Car</class>
+    <class>entities.WhoDidWhat</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <!-- DO NOT remove the line below. It's not set by the  entityUtils.EMF_Creator -->
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+      <!-- <property name="eclipselink.deploy-on-startup" value="true"/> -->
       <!-- The missing values are added by entityUtils.EMF_Creator -->
     </properties>
   </persistence-unit>
