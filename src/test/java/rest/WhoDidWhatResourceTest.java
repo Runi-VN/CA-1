@@ -110,7 +110,7 @@ public class WhoDidWhatResourceTest {
     }
 
     @Test
-    public void testGetJokeByIDError() throws Exception {
+    public void testGetWorkByWrongName() throws Exception {
         given()
                 .contentType("application/json")
                 .get("work/{name}", "WRONG NAME").then().log().body()
