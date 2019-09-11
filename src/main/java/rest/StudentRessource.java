@@ -23,39 +23,39 @@ import utils.EMF_Creator;
 @Path("students")
 public class StudentRessource {
 
-    private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.DEV, EMF_Creator.Strategy.DROP_AND_CREATE);
+    private static final EntityManagerFactory EMF = EMF_Creator.createEntityManagerFactory(EMF_Creator.DbSelector.DEV, EMF_Creator.Strategy.CREATE);
     private static final StudentFacade FACADE = StudentFacade.getStudentFacade(EMF);
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
 
-//    @GET
-//    @Path("/data")
-//    public String data() {
-//        EntityManager em = EMF.createEntityManager();
-//
-//        em.getTransaction().begin();
-//        Query query = em.createNativeQuery("truncate table CA1_test.STUDENT;");
-//        query.executeUpdate();
-//        em.getTransaction().commit();
-//
-//        ArrayList<Student> allStudents = new ArrayList();
-//        allStudents.add(new Student("abc-123", "Ulrikke Jensen", "www.github.com/ulrikke"));
-//        allStudents.add(new Student("bcd-234", "Orla Hansen", "www.github.com/orla"));
-//        allStudents.add(new Student("cde-345", "Werner Bo", "www.github.com/werner"));
-//        allStudents.add(new Student("def-456", "Gerda Sørensen", "www.github.com/gerda"));
-//        allStudents.add(new Student("efg-567", "Rigmor Alfsen", "www.github.com/rigmor"));
-//        try {
-//            for (Student s : allStudents) {
-//                em.getTransaction().begin();
-//                em.persist(s);
-//                em.getTransaction().commit();
-//            }
-//        } catch (Exception e) {
-//            em.getTransaction().rollback();
-//        } finally {
-//            em.close();
-//        }
-//        return "Students created";
-//    }
+    @GET
+    @Path("/data")
+    public String data() {
+        EntityManager em = EMF.createEntityManager();
+
+        em.getTransaction().begin();
+        Query query = em.createNativeQuery("truncate table CA1.STUDENT;");
+        query.executeUpdate();
+        em.getTransaction().commit();
+
+        ArrayList<Student> allStudents = new ArrayList();
+        allStudents.add(new Student("abc-123", "Ulrikke Jensen", "www.github.com/ulrikke"));
+        allStudents.add(new Student("bcd-234", "Orla Hansen", "www.github.com/orla"));
+        allStudents.add(new Student("cde-345", "Werner Bo", "www.github.com/werner"));
+        allStudents.add(new Student("def-456", "Gerda Sørensen", "www.github.com/gerda"));
+        allStudents.add(new Student("efg-567", "Rigmor Alfsen", "www.github.com/rigmor"));
+        try {
+            for (Student s : allStudents) {
+                em.getTransaction().begin();
+                em.persist(s);
+                em.getTransaction().commit();
+            }
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        } finally {
+            em.close();
+        }
+        return "Students created";
+    }
 
     @GET
     @Path("/allstudents")
