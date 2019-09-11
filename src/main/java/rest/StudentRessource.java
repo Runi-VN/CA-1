@@ -68,7 +68,7 @@ public class StudentRessource {
     }
 
     @GET
-    @Path("/{studentid}")
+    @Path("/studentid/{studentid}")
     @Produces({MediaType.APPLICATION_JSON})
     public String getStudentDTOByStudentID(@PathParam("studentid") String studentID) throws Exception {
         try {
@@ -79,7 +79,7 @@ public class StudentRessource {
     }
 
     @GET
-    @Path("/studentbyid/{ids}")
+    @Path("/databaseid/{ids}")
     @Produces({MediaType.APPLICATION_JSON})
     public String getStudentByID(@PathParam("ids") long id) throws Exception {
         try {
@@ -90,7 +90,7 @@ public class StudentRessource {
     }
 
     @GET
-    @Path("/studentbyname/{name}")
+    @Path("/studentname/{name}")
     @Produces({MediaType.APPLICATION_JSON})
     public String getStudentDTOByName(@PathParam("name") String name) throws Exception {
         try {
