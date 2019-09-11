@@ -1,16 +1,21 @@
 package facades;
 
+import dto.JokeDTO;
 import entities.Joke;
 import java.util.ArrayList;
 import java.util.List;
 import utils.EMF_Creator;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
+import javax.persistence.Query;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.EMF_Creator.DbSelector;
 import utils.EMF_Creator.Strategy;
@@ -52,7 +57,9 @@ public class JokeFacadeTest {
 
         try {
             em.getTransaction().begin();
-            em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
+            Query query = em.createNativeQuery("truncate table CA1_test.JOKE;");
+            query.executeUpdate();
+            //em.createNamedQuery("Joke.deleteAllRows").executeUpdate();
             em.getTransaction().commit();
             for (Joke j : jokes) {
                 em.getTransaction().begin();
@@ -66,12 +73,139 @@ public class JokeFacadeTest {
 
     @AfterEach
     public void tearDown() {
-//        Remove any data after each test was run
+        //Remove any data after each test was run
     }
 
     @Test
     public void testGetJokeCount() {
-        assertEquals(jokes.size(), facade.getJokeCount(), "Expects three rows in the database");
+        assertEquals(jokes.size(), facade.getJokeCount(), "Expects four rows in the database");
+    }
+
+    @Test
+    public void testGetAllJokes() {
+        //Arrange
+        List<Joke> expResult = jokes;
+        List<Joke> result;
+
+        //Act
+        result = facade.getAllJokes();
+
+        //Assert
+        Assertions.assertNotNull(result);
+        assertEquals(expResult, result);
+    }
+
+    @Disabled
+    @Test
+    public void testGetAllJokesError() {
+        //Arrange
+
+        //Act
+        //Assert
+    }
+
+    @Test
+    public void testGetAllJokesAsDTO() {
+        //Arrange
+        List<JokeDTO> expResult = new ArrayList();
+        List<JokeDTO> result;
+
+        for (Joke j : jokes) {
+            expResult.add(new JokeDTO(j)); //adding DTOs
+        }
+
+        //Act
+        result = facade.getAllJokesAsDTO();
+
+        //Assert
+        Assertions.assertNotNull(result);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testGetJokeById() {
+        //Arrange
+        Joke expResult = jokes.get(2);
+        Joke result;
+
+        //Act
+        result = facade.getJokeById(expResult.getId());
+
+        //Assert
+        Assertions.assertNotNull(result);
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * em.find in getJokeByID does not actually throw an exception, but returns
+     * null.
+     *
+     *
+     * I made a guard for that and throw an IllegalStateException.
+     */
+    @Test
+    public void testGetJokeByIdError() {
+        //Arrange
+        Throwable expResult = new IllegalArgumentException("Could not get joke by ID -> Database is empty or joke doesn't exist.");
+        Throwable result;
+        long id = 99L;
+
+        //Act
+        result = assertThrows(IllegalArgumentException.class, () -> {
+            facade.getJokeById(id);
+        });
+
+        //Assert
+        Assertions.assertNotNull(result);
+        assertEquals(expResult.getCause(), result.getCause());
+    }
+
+    @Test
+    public void testGetJokeByIdAsDTO() {
+        //Arrange
+        JokeDTO expResult = new JokeDTO(jokes.get(2));
+        JokeDTO result;
+
+        //Act
+        result = facade.getJokeByIdAsDTO(expResult.getId());
+
+        //Assert
+        Assertions.assertNotNull(result);
+        assertEquals(expResult, result);
+    }
+
+    @Test
+    public void testGetJokeByRandom() {
+        //Arrange
+        //Joke expResult; //shrug
+        Joke result;
+
+        //Act
+        result = facade.getJokeByRandom();
+        System.out.println("RANDOM JOKE\n" + result);
+        //Assert
+        Assertions.assertNotNull(result); //would be null if nothing was found.
+    }
+
+    @Disabled
+    @Test
+    public void testGetJokeByRandomError() {
+        //Arrange
+
+        //Act
+        //Assert
+    }
+
+    @Test
+    public void testGetJokeByRandomAsDTO() {
+        //Arrange
+        //Joke expResult; //shrug
+        JokeDTO result;
+
+        //Act
+        result = facade.getJokeByRandomAsDTO();
+        //Assert
+        Assertions.assertNotNull(result); //would be null if nothing was found.
     }
 
 }

@@ -47,9 +47,9 @@ public class StudentDTO {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 97 * hash + Objects.hashCode(this.studentID);
-        hash = 97 * hash + Objects.hashCode(this.name);
-        hash = 97 * hash + Objects.hashCode(this.github);
+        hash = 73 * hash + Objects.hashCode(this.studentID);
+        hash = 73 * hash + Objects.hashCode(this.name);
+        hash = 73 * hash + Objects.hashCode(this.github);
         return hash;
     }
 
@@ -76,4 +76,6 @@ public class StudentDTO {
         }
         return true;
     }
+
+    
 }
