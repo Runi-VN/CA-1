@@ -64,7 +64,7 @@ public class StudentFacadeTest {
     @Test
     public void testGetStudentDTOById() throws Exception {
         StudentDTO exp = new StudentDTO(new Student("efg-567", "Rigmor Alfsen", "www.github.com/rigmor"));
-        assertEquals(exp, facade.getStudentDTOById(5));
+        assertEquals(exp, facade.getStudentById(5));
     }
 
     @Test
