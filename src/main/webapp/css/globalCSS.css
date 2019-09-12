@@ -9,16 +9,8 @@ pre code {
 
 /* GROUP CONTRACT CSS START */
 
-.container {
+#OutPutContainer {
     display: flex;
-}
-
-#GroupContractContent {
-    order: 2;
-}
-
-#WhoDidWhat {
-    order: 1;
 }
 
 .c1 {
