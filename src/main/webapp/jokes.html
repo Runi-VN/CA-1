@@ -13,16 +13,37 @@
         <title>Jokes</title>
     </head>
 
-    <body>
-        <h1 id="greeting"></h1>
-
-        <div id="container">
-            <span id="output"></span>
-
+    <body id="jokesBody">
+        <div id="jokesGreetingContainer">
+            <h1 id="jokesGreeting">Our Cool Jokes</h1>
         </div>
 
+        <p>Assignment 2: Fetch joke by ID</p>
+        <div id="jokesContainer">
+            <form>
+                <label for="IdInput">Joke ID</label><br>
+                <input type="number" id="IdInput"><br><br>
+                <button id="btnFetch" class="btn btn-primary btn-block">Fetch</button>
+            </form>
+
+        </div>
+        <p id="idOutput"></p>
+
+        <p>Assignment 3: Fetch random joke</p>
+        <div id="jokesContainer">
+            <form>
+                <button id="btnFetch" class="btn btn-primary btn-lg">Fetch</button>
+            </form>
+            
+        </div>
+        <p id="randomOutput"></p>
+        <table id="allJokes" class="table-striped"></table>
+
+
+
         <a href="index.html" id="returnLink">Return to index</a>
-        <!-- Javascript import -->
+
+        <!-- Javascript -->
         <script src="javascript/jokes.js" type="text/javascript"></script>
     </body>
 </html>

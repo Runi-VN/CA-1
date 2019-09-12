@@ -7,6 +7,29 @@ pre code {
     padding: 20px;
 }
 
+#jokesBody {
+    text-align: center;
+    font-family: monospace;
+}
+
+#jokesContainer {
+    display: inline-block;
+    padding: 15px;
+    border: 2px solid black;
+    width: inherit;
+}
+
+#jokesGreeting {
+    border-bottom-style: solid;
+    display: inline-block;
+    border-width: 5px;
+}
+
+#jokesGreetingContainer{
+    padding-top: 1%;
+    padding-bottom: 4%;
+}
+
 /* GROUP CONTRACT CSS START */
 
 .container {
