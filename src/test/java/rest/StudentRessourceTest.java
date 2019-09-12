@@ -108,7 +108,7 @@ public class StudentRessourceTest {
                 .body("msg", equalTo("path students succesful"));
     }
 
-    @Test  
+    @Test
     public void testData() {
         given()
                 .contentType("application/json").when()
@@ -116,7 +116,7 @@ public class StudentRessourceTest {
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("dataMsg", equalTo("Students created"));
     }
-    
+
     @Test
     public void testGetAllStudents() throws Exception {
         given()
@@ -135,17 +135,16 @@ public class StudentRessourceTest {
                 .body("size()", is(5));
     }
 
-//    @Test
-//    public void testGetStudentDTOByStudentID() throws Exception {
-//        System.out.println("getStudentDTOByStudentID");
-//        String studentID = "";
-//        StudentRessource instance = new StudentRessource();
-//        String expResult = "";
-//        String result = instance.getStudentDTOByStudentID(studentID);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+    @Test
+    public void testGetStudentDTOByStudentID() throws Exception {
+        given()
+                .contentType("application/json")
+                .get("/students/studentid/efg-567").then()
+                .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("studentID", equalTo("efg-567"))
+                .body("name", equalTo("Rigmor Alfsen"))
+                .body("github", equalTo("www.github.com/rigmor"));
+    }
 
     @Test
     public void testGetStudentByDatabaseID() throws Exception {
@@ -157,7 +156,7 @@ public class StudentRessourceTest {
                 .body("studentID", equalTo("efg-567"))
                 .body("name", equalTo("Rigmor Alfsen"))
                 .body("github", equalTo("www.github.com/rigmor"));
-    
+
     }
 
     @Test
