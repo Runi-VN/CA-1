@@ -49,12 +49,19 @@ public class StudentRessource {
             }
         } catch (Exception e) {
             em.getTransaction().rollback();
+            return "{\"dataMsg\":\"An error occured\"}";
         } finally {
             em.close();
         }
-        return "Students created";
+        return "{\"dataMsg\":\"Students created\"}";
     }
 
+    @GET
+    @Produces({MediaType.APPLICATION_JSON})
+    public String demo() {
+        return "{\"msg\":\"path students succesful\"}";
+    }
+    
     @GET
     @Path("/allstudents")
     @Produces({MediaType.APPLICATION_JSON})
