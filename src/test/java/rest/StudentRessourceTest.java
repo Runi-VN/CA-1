@@ -99,14 +99,14 @@ public class StudentRessourceTest {
                 .body("msg", equalTo("path students succesful"));
     }
 
-    @Test
-    public void testData() {
-        given()
-                .contentType("application/json").when()
-                .get("/students/data").then().assertThat()
-                .statusCode(HttpStatus.OK_200.getStatusCode())
-                .body("dataMsg", equalTo("Students created"));
-    }
+//    @Test
+//    public void testData() {
+//        given()
+//                .contentType("application/json").when()
+//                .get("/students/data").then().assertThat()
+//                .statusCode(HttpStatus.OK_200.getStatusCode())
+//                .body("dataMsg", equalTo("Students created"));
+//    }
 
     @Test
     public void testGetAllStudents() throws Exception {
