@@ -86,3 +86,25 @@ pre code {
 }
 
 /* GROUP CONTRACT CSS END */
+
+/* CARS CSS BEGINNING */
+
+#car-card-div {
+    width: 100%;
+}
+
+.car-button {
+    width: 100%;
+    margin-top: 5px;
+}
+
+#button-all {
+    width: 30%;
+    margin-top: 5px;
+}
+
+#fp-link {
+    margin: 6px;
+}
+
+/* CARS CSS END */
