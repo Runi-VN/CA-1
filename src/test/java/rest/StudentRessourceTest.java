@@ -83,62 +83,62 @@ public class StudentRessourceTest {
         }
     }
 
-    @Test
-    public void testData() {
-        System.out.println("data");
-        StudentRessource instance = new StudentRessource();
-        String expResult = "";
-        String result = instance.data();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testGetAllStudents() throws Exception {
-        System.out.println("getAllStudents");
-        StudentRessource instance = new StudentRessource();
-        String expResult = "";
-        String result = instance.getAllStudents();
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testGetStudentDTOByStudentID() throws Exception {
-        System.out.println("getStudentDTOByStudentID");
-        String studentID = "";
-        StudentRessource instance = new StudentRessource();
-        String expResult = "";
-        String result = instance.getStudentDTOByStudentID(studentID);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testGetStudentByID() throws Exception {
-        System.out.println("getStudentByID");
-        long id = 0L;
-        StudentRessource instance = new StudentRessource();
-        String expResult = "";
-        String result = instance.getStudentByID(id);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
-
-    @Test
-    public void testGetStudentDTOByName() throws Exception {
-        System.out.println("getStudentDTOByName");
-        String name = "";
-        StudentRessource instance = new StudentRessource();
-        String expResult = "";
-        String result = instance.getStudentDTOByName(name);
-        assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+//    @Test
+//    public void testData() {
+//        System.out.println("data");
+//        StudentRessource instance = new StudentRessource();
+//        String expResult = "";
+//        String result = instance.data();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    @Test
+//    public void testGetAllStudents() throws Exception {
+//        System.out.println("getAllStudents");
+//        StudentRessource instance = new StudentRessource();
+//        String expResult = "";
+//        String result = instance.getAllStudents();
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    @Test
+//    public void testGetStudentDTOByStudentID() throws Exception {
+//        System.out.println("getStudentDTOByStudentID");
+//        String studentID = "";
+//        StudentRessource instance = new StudentRessource();
+//        String expResult = "";
+//        String result = instance.getStudentDTOByStudentID(studentID);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    @Test
+//    public void testGetStudentByID() throws Exception {
+//        System.out.println("getStudentByID");
+//        long id = 0L;
+//        StudentRessource instance = new StudentRessource();
+//        String expResult = "";
+//        String result = instance.getStudentByID(id);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
+//
+//    @Test
+//    public void testGetStudentDTOByName() throws Exception {
+//        System.out.println("getStudentDTOByName");
+//        String name = "";
+//        StudentRessource instance = new StudentRessource();
+//        String expResult = "";
+//        String result = instance.getStudentDTOByName(name);
+//        assertEquals(expResult, result);
+//        // TODO review the generated test code and remove the default call to fail.
+//        fail("The test case is a prototype.");
+//    }
 
 }
