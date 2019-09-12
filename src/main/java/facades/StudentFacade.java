@@ -39,7 +39,6 @@ public class StudentFacade {
         } catch (Exception ex) {
             throw new IllegalArgumentException("Could not find student: " + ex.getMessage());
         } finally {
-
             em.close();
         }
     }
