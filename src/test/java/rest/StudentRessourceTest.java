@@ -33,8 +33,6 @@ public class StudentRessourceTest {
     static final URI BASE_URI = UriBuilder.fromUri(SERVER_URL).port(SERVER_PORT).build();
     private static HttpServer httpServer;
     private static EntityManagerFactory emf;
-    List<Joke> jokes;
-    List<JokeDTO> jokesDTO;
 
     static HttpServer startServer() {
         ResourceConfig rc = ResourceConfig.forApplication(new ApplicationConfig());
