@@ -86,11 +86,11 @@ public class StudentRessource {
     }
 
     @GET
-    @Path("/databaseid/{ids}")
+    @Path("/databaseid/{id}")
     @Produces({MediaType.APPLICATION_JSON})
-    public String getStudentByID(@PathParam("ids") long id) throws Exception {
+    public String getStudentByDatabaseID(@PathParam("id") long id) throws Exception {
         try {
-            return GSON.toJson(FACADE.getStudentById(id));
+            return GSON.toJson(FACADE.getStudentByDatabaseId(id));
         } catch (Exception ex) {
             return "{\"error\": \"" + ex.getMessage() + "\"}";
         }

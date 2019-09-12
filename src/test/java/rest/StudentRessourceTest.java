@@ -100,7 +100,7 @@ public class StudentRessourceTest {
     }
 
     @Test
-    public void testRoot() throws Exception {
+    public void testStudentsRoot() throws Exception {
         given()
                 .contentType("application/json").when()
                 .get("/students").then().assertThat()
@@ -146,28 +146,29 @@ public class StudentRessourceTest {
 //        // TODO review the generated test code and remove the default call to fail.
 //        fail("The test case is a prototype.");
 //    }
-//
-//    @Test
-//    public void testGetStudentByID() throws Exception {
-//        System.out.println("getStudentByID");
-//        long id = 0L;
-//        StudentRessource instance = new StudentRessource();
-//        String expResult = "";
-//        String result = instance.getStudentByID(id);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
-//
-//    @Test
-//    public void testGetStudentDTOByName() throws Exception {
-//        System.out.println("getStudentDTOByName");
-//        String name = "";
-//        StudentRessource instance = new StudentRessource();
-//        String expResult = "";
-//        String result = instance.getStudentDTOByName(name);
-//        assertEquals(expResult, result);
-//        // TODO review the generated test code and remove the default call to fail.
-//        fail("The test case is a prototype.");
-//    }
+
+    @Test
+    public void testGetStudentByDatabaseID() throws Exception {
+        given()
+                .contentType("application/json")
+                .get("/students/databaseid/5").then()
+                .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("id", equalTo(5))
+                .body("studentID", equalTo("efg-567"))
+                .body("name", equalTo("Rigmor Alfsen"))
+                .body("github", equalTo("www.github.com/rigmor"));
+    
+    }
+
+    @Test
+    public void testGetStudentDTOByName() throws Exception {
+        given()
+                .contentType("application/json")
+                .get("/students/studentname/Rigmor Alfsen").then()
+                .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("[0].studentID", equalTo("efg-567"))
+                .body("[0].name", equalTo("Rigmor Alfsen"))
+                .body("[0].github", equalTo("www.github.com/rigmor"))
+                .body("size()", is(1));
+    }
 }

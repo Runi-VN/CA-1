@@ -31,11 +31,11 @@ public class StudentFacade {
         return emf.createEntityManager();
     }
 
-    public StudentDTO getStudentById(long id) throws Exception {
+    public Student getStudentByDatabaseId(long id) throws Exception {
         EntityManager em = getEntityManager();
         try {
             Student student = em.find(Student.class, id);
-            return new StudentDTO(student);
+            return student;
         } catch (Exception ex) {
             throw new IllegalArgumentException("Could not find student: " + ex.getMessage());
         } finally {
