@@ -32,7 +32,7 @@ public class WhoDidWhatResource {
     @GET
     @Path("/{name}")
     @Produces({MediaType.APPLICATION_JSON})
-    public String getJokeByID(@PathParam("name") String name) throws Exception {
+    public String getWorkByName(@PathParam("name") String name) throws Exception {
         try {
             return GSON.toJson(FACADE.getWorkDoneByName(name));
         } catch (Exception ex) {
