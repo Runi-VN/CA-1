@@ -28,6 +28,7 @@ public class StudentRessource {
 
     @GET
     @Path("/data")
+    @Produces({MediaType.APPLICATION_JSON})
     public String data() {
         EntityManager em = EMF.createEntityManager();
 
