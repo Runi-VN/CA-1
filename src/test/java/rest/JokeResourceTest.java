@@ -7,7 +7,6 @@ import io.restassured.RestAssured;
 import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 import io.restassured.parsing.Parser;
-import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +26,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.EMF_Creator.DbSelector;
 import utils.EMF_Creator.Strategy;
@@ -112,6 +112,8 @@ public class JokeResourceTest {
         jokes.forEach(e -> jokesDTO.add(new JokeDTO(e)));
     }
 
+    //Basically the same as testDummyMsg
+    @Disabled
     @Test
     public void testServerIsUp() {
         System.out.println("Testing is server UP");
@@ -133,7 +135,7 @@ public class JokeResourceTest {
     public void testGetJokeCount() throws Exception {
         given()
                 .contentType("application/json")
-                .get("/jokes/count").then().log().body()
+                .get("/jokes/count").then()//.log().body()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("count", equalTo(jokes.size()));
@@ -143,7 +145,7 @@ public class JokeResourceTest {
     public void testGetAllJokes() throws Exception {
         given()
                 .contentType("application/json")
-                .get("/jokes/all").then().log().body()
+                .get("/jokes/all").then()//.log().body()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("[0].reference", equalTo(jokes.get(0).getReference()))
@@ -156,7 +158,7 @@ public class JokeResourceTest {
     public void testGetAllJokesAsDTO() throws Exception {
         given()
                 .contentType("application/json")
-                .get("/jokes/all/dto").then().log().body()
+                .get("/jokes/all/dto").then()//.log().body()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("[0].joke", equalTo(jokesDTO.get(0).getJoke()))
@@ -169,7 +171,7 @@ public class JokeResourceTest {
     public void testGetJokeByID_SIMPLE() throws Exception {
         given()
                 .contentType("application/json")
-                .get("/jokes/{id}", jokes.get(1).getId()).then().log().body()
+                .get("/jokes/{id}", jokes.get(1).getId()).then()//.log().body()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("joke", equalTo(jokes.get(1).getJoke()));
@@ -190,7 +192,7 @@ public class JokeResourceTest {
     public void testGetJokeByIDError() throws Exception {
         given()
                 .contentType("application/json")
-                .get("/jokes/{id}", 999).then().log().body()
+                .get("/jokes/{id}", 999).then()//.log().body()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("error", equalTo("Could not get joke by ID -> Database is empty or joke doesn't exist."));
@@ -200,7 +202,7 @@ public class JokeResourceTest {
     public void testGetJokeByIDAsDTO_SIMPLE() throws Exception {
         given()
                 .contentType("application/json")
-                .get("/jokes/{id}/dto", jokesDTO.get(2).getId()).then().log().body()
+                .get("/jokes/{id}/dto", jokesDTO.get(2).getId()).then()//.log().body()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("joke", equalTo(jokesDTO.get(2).getJoke()));
@@ -221,7 +223,7 @@ public class JokeResourceTest {
     public void testGetJokeByIDAsDTOError() throws Exception {
         given()
                 .contentType("application/json")
-                .get("/jokes/{id}/dto", 888).then().log().body()
+                .get("/jokes/{id}/dto", 888).then()//.log().body()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("error", equalTo("Could not get joke (DTO) by ID -> Database is empty or joke doesn't exist."));
@@ -231,7 +233,7 @@ public class JokeResourceTest {
     public void testGetJokeByRandom() throws Exception {
         given()
                 .contentType("application/json")
-                .get("/jokes/random").then().log().body()
+                .get("/jokes/random").then()//.log().body()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("id", notNullValue())
@@ -245,7 +247,7 @@ public class JokeResourceTest {
     public void testGetJokeDTOByRandom() throws Exception {
         given()
                 .contentType("application/json")
-                .get("/jokes/random/dto").then().log().body()
+                .get("/jokes/random/dto").then()//.log().body()
                 .assertThat()
                 .statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("id", notNullValue())
@@ -255,11 +257,11 @@ public class JokeResourceTest {
                 .body("rating", notNullValue());
     }
 
-    public static void main(String[] args) throws IOException {
-        HttpServer server = startServer();
-        System.in.read();
-        server.shutdownNow();
-        System.out.println("done");
-    }
+//    public static void main(String[] args) throws IOException {
+//        HttpServer server = startServer();
+//        System.in.read();
+//        server.shutdownNow();
+//        System.out.println("done");
+//    }
 
 }

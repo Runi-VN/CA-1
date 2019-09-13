@@ -182,7 +182,7 @@ public class JokeFacadeTest {
 
         //Act
         result = facade.getJokeByRandom();
-        System.out.println("RANDOM JOKE\n" + result);
+        //System.out.println("RANDOM JOKE\n" + result);
         //Assert
         Assertions.assertNotNull(result); //would be null if nothing was found.
     }
