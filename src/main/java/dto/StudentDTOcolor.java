@@ -1,50 +1,26 @@
-package entities;
+package dto;
 
-import java.io.Serializable;
+import entities.Student;
 import java.util.Objects;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
 /**
  *
  * @author Camilla
  */
-@Entity
-@NamedQueries({
-    @NamedQuery(name = "Student.getAll", query = "SELECT s FROM Student s"),
-    @NamedQuery(name = "Student.getByStudentID", query = "SELECT s FROM Student s WHERE s.studentID = :studentID"),
-    @NamedQuery(name = "Student.getByName", query = "SELECT s FROM Student s WHERE s.name = :name"),})
-public class Student implements Serializable {
-
-    private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class StudentDTOcolor {
     private String studentID;
     private String name;
     private String github;
     private String color;
-
-    public Student() {
+    
+    public StudentDTOcolor(Student member) {
+        this.studentID = member.getStudentID();
+        this.name = member.getName();
+        this.github = member.getGithub();
+        this.color = member.getColor();
     }
 
-    public Student(String studentID, String name, String github, String color) {
-        this.studentID = studentID;
-        this.name = name;
-        this.github = github;
-        this.color = color;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
+    public StudentDTOcolor() {
     }
 
     public String getStudentID() {
@@ -81,11 +57,11 @@ public class Student implements Serializable {
 
     @Override
     public int hashCode() {
-        int hash = 7;
-        hash = 11 * hash + Objects.hashCode(this.studentID);
-        hash = 11 * hash + Objects.hashCode(this.name);
-        hash = 11 * hash + Objects.hashCode(this.github);
-        hash = 11 * hash + Objects.hashCode(this.color);
+        int hash = 3;
+        hash = 19 * hash + Objects.hashCode(this.studentID);
+        hash = 19 * hash + Objects.hashCode(this.name);
+        hash = 19 * hash + Objects.hashCode(this.github);
+        hash = 19 * hash + Objects.hashCode(this.color);
         return hash;
     }
 
@@ -100,7 +76,7 @@ public class Student implements Serializable {
         if (getClass() != obj.getClass()) {
             return false;
         }
-        final Student other = (Student) obj;
+        final StudentDTOcolor other = (StudentDTOcolor) obj;
         if (!Objects.equals(this.studentID, other.studentID)) {
             return false;
         }

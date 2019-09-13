@@ -1,6 +1,7 @@
 package facades;
 
 import dto.StudentDTO;
+import dto.StudentDTOcolor;
 import entities.Student;
 import java.util.ArrayList;
 import java.util.List;
@@ -78,6 +79,22 @@ public class StudentFacade {
             List<StudentDTO> result = new ArrayList<>();
             students.forEach((student) -> {
                 result.add(new StudentDTO(student));
+            });
+            return result;
+            } catch (Exception ex) {
+            throw new IllegalArgumentException("Could not find students: " + ex.getMessage());
+        } finally {
+            em.close();
+        }
+    }
+    
+    public List<StudentDTOcolor> getAllStudentDTOcolor() {
+        EntityManager em = getEntityManager();
+        try {
+            List<Student> students = em.createNamedQuery("Student.getAll").getResultList();
+            List<StudentDTOcolor> result = new ArrayList<>();
+            students.forEach((student) -> {
+                result.add(new StudentDTOcolor(student));
             });
             return result;
             } catch (Exception ex) {

@@ -111,3 +111,51 @@ code {
 }
 
 /* GROUP CONTRACT CSS END */
+
+/* GROUP INDEX CSS START */
+.fa-redo:hover{
+    color: white !important;
+}
+
+.pindex{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    color: #454d55;
+}
+
+.pindexbig{
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+    color: #454d55;
+}
+
+.flexcolumn{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+
+.buttonimgrelative{
+    position: relative;
+}
+
+.buttonimgabsolute{
+    position: absolute; 
+    top:8px; 
+    left:8px;
+}
+
+.buttonimgabsolutefavicon{
+    position: absolute;
+    top:10px; 
+    left:10px;
+}
+
+.studentcolor{
+    color: #912626;
+}
+
+
+/* GROUP INDEX CSS END */

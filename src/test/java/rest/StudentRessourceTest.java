@@ -66,11 +66,11 @@ public class StudentRessourceTest {
         em.getTransaction().commit();
 
         ArrayList<Student> allStudents = new ArrayList();
-        allStudents.add(new Student("abc-123", "Ulrikke Jensen", "www.github.com/ulrikke"));
-        allStudents.add(new Student("bcd-234", "Orla Hansen", "www.github.com/orla"));
-        allStudents.add(new Student("cde-345", "Werner Bo", "www.github.com/werner"));
-        allStudents.add(new Student("def-456", "Gerda Sørensen", "www.github.com/gerda"));
-        allStudents.add(new Student("efg-567", "Rigmor Alfsen", "www.github.com/rigmor"));
+        allStudents.add(new Student("abc-123", "Ulrikke Jensen", "www.github.com/ulrikke", "red"));
+        allStudents.add(new Student("bcd-234", "Orla Hansen", "www.github.com/orla", "red"));
+        allStudents.add(new Student("cde-345", "Werner Bo", "www.github.com/werner", "red"));
+        allStudents.add(new Student("def-456", "Gerda Sørensen", "www.github.com/gerda", "red"));
+        allStudents.add(new Student("efg-567", "Rigmor Alfsen", "www.github.com/rigmor", "red"));
         try {
             for (Student s : allStudents) {
                 em.getTransaction().begin();
