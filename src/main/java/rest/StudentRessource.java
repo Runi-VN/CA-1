@@ -38,10 +38,10 @@ public class StudentRessource {
         em.getTransaction().commit();
 
         ArrayList<Student> allStudents = new ArrayList();
-        allStudents.add(new Student("cs340", "Camilla Staunstrup", "https://github.com/Castau"));
-        allStudents.add(new Student("mh748", "Malte Hviid-Magnussen", "https://github.com/MalteMagnussen"));
-        allStudents.add(new Student("ab363", "Asger Bjarup", "https://github.com/HrBjarup"));
-        allStudents.add(new Student("rn118", "Rúni Niclassen", "https://github.com/Runi-VN"));
+        allStudents.add(new Student("cs340", "Camilla Staunstrup", "github.com/Castau"));
+        allStudents.add(new Student("mh748", "Malte Hviid-Magnussen", "github.com/MalteMagnussen"));
+        allStudents.add(new Student("ab363", "Asger Bjarup", "github.com/HrBjarup"));
+        allStudents.add(new Student("rn118", "Rúni Niclassen", "github.com/Runi-VN"));
         try {
             for (Student s : allStudents) {
                 em.getTransaction().begin();

@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-        students();  
-        makeLinks();
+    students();
 });
 
 
@@ -14,6 +13,7 @@ function students() {
             let data = Object.keys(jsondata[0]);
             tableHead(table, data);
             tableData(table, jsondata);
+            fixTableHeaders();
         });
 }
 
@@ -23,6 +23,7 @@ function tableHead(table, data) {
     for (let key of data) {
         let th = document.createElement("th");
         let text = document.createTextNode(key);
+        th.id = key;
         th.appendChild(text);
         row.appendChild(th);
     }
@@ -33,31 +34,24 @@ function tableData(table, data) {
         let row = table.insertRow();
         for (key in element) {
             let cell = row.insertCell();
-            let text = document.createTextNode(element[key]);
-            cell.appendChild(text);
+            let cellValue = element[key];
+            let text = document.createTextNode(cellValue);
+
+            if (cellValue.includes("github")) {
+                let a = document.createElement('a');
+                a.appendChild(text);
+                a.href = "https://www." + cellValue;
+                cell.appendChild(a);
+            }
+            else {
+                cell.appendChild(text);
+            }
         }
     }
 }
 
-function makeLinks (){
-    if(document.querySelector("td").includes("github")){
-        alert("fandt github");
-    }
-
+function fixTableHeaders(){
+    document.getElementById("studentID").innerText = "Student ID";
+    document.getElementById("name").innerText = "Student Name";
+    document.getElementById("github").innerText = "Student Github Link";
 }
-
-
-
-//function makeLinks (){
-//    if(document.querySelector("td").includes("github")){
-//        document.querySelector("td").includes("github").bind("click",function() {
-//      location = "github.com";
-//   });
-//    }
-//}
-
-//<a href="groupContract.html" id="contracthtml">Group Contract</a>
-
-//("td#my_clickable_cell").bind("click",function() {
-//      location = "url to go to when clicked";
-//   });
