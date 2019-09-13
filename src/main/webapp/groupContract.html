@@ -39,15 +39,44 @@ The first and last part can be written by the group. The individual parts, must 
         <!-- Page Content -->
 
         <!-- OutPut container -->
-        <div class="container">
+        <div class="container" id="OutPutContainer">
 
-            <div id="WhoDidWhat">
+            <div class='container' id="WhoDidWhat">
+                <div id='WorkInputDiv'>
 
+                    <h2> Input Work </h2>
+
+                    <form method="POST" action="FrontController">
+                        <input type="hidden" name="command" value="makeWork">
+                        <div class="form-group">
+                            <label for="inputName">Your name</label>
+                            <input type="text" name="name" class="form-control" id="inputName" placeholder="Enter your name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="inputWork">What did you do?</label>
+                            <input type="text" name="work" class="form-control" id="inputWork" placeholder="Enter the work you've done." required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+
+                </div>
+                <br>
+                <div id='WorkOutputDiv'>
+
+                    <h2> View Work </h2>
+                    <label for='nameToView'>Input the name of the person whose work you wish to view.</label>
+                    <input type='text' class='form-control' id='nameToView' placeholder="Name"> 
+                    <br>
+                    <button class='btn btn-primary' name='ViewAll' id='viewAll'>View All</button>
+                    <button class='btn btn-primary' name='ViewByName' id='viewByName'>View By Name</button>
+                    
+                </div>
+                <br>
+                <p id="OutPutReceiver"></p>
+                
             </div>
 
-
-            <div id="GroupContractContent">
-                <div class="topSpace"></div>
+            <div class='container' id="GroupContractContent">
                 <h2>
                     Gruppekontrakt
                 </h2>
@@ -104,7 +133,7 @@ The first and last part can be written by the group. The individual parts, must 
                 </ul>
                 <ul class="c0">
                     <li class="c3 c5">
-                        <span class="c2">Discord/Github webhook bruges til at annoncere pull requests&amp;pushes</span>
+                        <span class="c2">Discord/Github webhook bruges til at annoncere pull requests &amp; pushes</span>
                     </li>
                     <li class="c3 c5">
                         <span class="c2">mvn clean test &nbsp;f&oslash;r push</span>
@@ -202,6 +231,7 @@ The first and last part can be written by the group. The individual parts, must 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
         <!-- My Custom JavaScript - Input below this line -->
+        <script src="javascript/tableUtil.js"></script>
         <script src="javascript/groupContract.js"></script>
 
 
