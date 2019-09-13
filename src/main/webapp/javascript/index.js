@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
         students();  
+        makeLinks();
 });
 
 
@@ -38,3 +39,25 @@ function tableData(table, data) {
     }
 }
 
+function makeLinks (){
+    if(document.querySelector("td").includes("github")){
+        alert("fandt github");
+    }
+
+}
+
+
+
+//function makeLinks (){
+//    if(document.querySelector("td").includes("github")){
+//        document.querySelector("td").includes("github").bind("click",function() {
+//      location = "github.com";
+//   });
+//    }
+//}
+
+//<a href="groupContract.html" id="contracthtml">Group Contract</a>
+
+//("td#my_clickable_cell").bind("click",function() {
+//      location = "url to go to when clicked";
+//   });
