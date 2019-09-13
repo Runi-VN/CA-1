@@ -28,6 +28,13 @@ public class JokeResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String demo() {
+        return "{\"msg\":\"ACCESS GRANTED\"}";
+    }
+
+    @GET
+    @Path("/populate")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String populate() {
         List<Joke> jokes;
         EntityManager em = EMF.createEntityManager();
         jokes = new ArrayList(); //init
@@ -51,11 +58,11 @@ public class JokeResource {
         } finally {
             em.close();
         }
-        
-        
-        return "{\"msg\":\"ACCESS GRANTED\"}";
+        JsonObject dbMsg = new JsonObject();
+        dbMsg.addProperty("msg", "Populated DB");
+        return GSON.toJson(dbMsg);
     }
-    
+
     @Path("/count")
     @GET
     @Produces({MediaType.APPLICATION_JSON})
@@ -79,8 +86,8 @@ public class JokeResource {
             return "{\"error\": \"" + ex.getMessage() + "\"}";
         }
     }
-    
-     @GET
+
+    @GET
     @Path("/all/dto")
     @Produces({MediaType.APPLICATION_JSON})
     public String getAllJokesAsDTO() throws Exception {
@@ -90,7 +97,6 @@ public class JokeResource {
             return "{\"error\": \"" + ex.getMessage() + "\"}";
         }
     }
-
 
     @GET
     @Path("/{id}")
@@ -113,7 +119,7 @@ public class JokeResource {
             return "{\"error\": \"" + ex.getMessage() + "\"}";
         }
     }
-    
+
     @GET
     @Path("/random")
     @Produces({MediaType.APPLICATION_JSON})
@@ -124,7 +130,7 @@ public class JokeResource {
             return "{\"error\": \"" + ex.getMessage() + "\"}";
         }
     }
-    
+
     @GET
     @Path("/random/dto")
     @Produces({MediaType.APPLICATION_JSON})
