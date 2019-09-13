@@ -72,7 +72,7 @@ public class Student implements Serializable {
     @Override
     public int hashCode() {
         int hash = 7;
-        hash = 29 * hash + Objects.hashCode(this.id);
+//        hash = 29 * hash + Objects.hashCode(this.id);
         hash = 29 * hash + Objects.hashCode(this.studentID);
         hash = 29 * hash + Objects.hashCode(this.name);
         hash = 29 * hash + Objects.hashCode(this.github);
@@ -100,9 +100,9 @@ public class Student implements Serializable {
         if (!Objects.equals(this.github, other.github)) {
             return false;
         }
-        if (!Objects.equals(this.id, other.id)) {
-            return false;
-        }
+//        if (!Objects.equals(this.id, other.id)) {
+//            return false;
+//        }
         return true;
     }
 
