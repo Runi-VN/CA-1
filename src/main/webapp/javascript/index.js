@@ -6,11 +6,7 @@ document.getElementById("reset").addEventListener("click", function (event) {
     resetTable("/CA-1/api/students/allstudentscolor");
 });
 
-//allstudentscolor
-
 function students(url) {
-    //let url = "/CA-1/api/students/allstudents";
-
     fetch(url)
         .then(res => res.json())
         .then(jsondata => {
@@ -52,6 +48,13 @@ function tableData(table, data) {
                 a.href = "https://www." + cellValue;
                 cell.appendChild(a);
             }
+            if(cellValue === "red"){
+                let i = cell.appendChild(document.createElement('i'))
+                i.classList.add("studentcolor");
+                i.classList.add("fa");
+                i.classList.add("fa-address-card");
+                i.classList.add("fa-2x");
+            }
             else {
                 cell.appendChild(text);
             }
@@ -63,6 +66,9 @@ function fixTableHeaders(){
     document.getElementById("studentID").innerText = "Student ID";
     document.getElementById("name").innerText = "Student Name";
     document.getElementById("github").innerText = "Student Github Link";
+    if(document.getElementById("color") !== null){
+        document.getElementById("color").innerText = "Student Ambition";
+    }
 }
 
 function resetTable(url){
