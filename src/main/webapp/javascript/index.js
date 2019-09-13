@@ -2,6 +2,9 @@ document.addEventListener("DOMContentLoaded", function () {
     students();
 });
 
+document.getElementById("reset").addEventListener("click", function (event) {
+    resetTable();
+});
 
 function students() {
     let url = "/CA-1/api/students/allstudents";
@@ -58,4 +61,11 @@ function fixTableHeaders(){
     document.getElementById("studentID").innerText = "Student ID";
     document.getElementById("name").innerText = "Student Name";
     document.getElementById("github").innerText = "Student Github Link";
+}
+
+function resetTable(){
+    let oldtable = document.getElementById("studentTable");
+    oldtable.innerHTML = "";
+    students();
+
 }
