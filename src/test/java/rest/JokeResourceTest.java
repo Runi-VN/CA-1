@@ -112,6 +112,7 @@ public class JokeResourceTest {
         jokes.forEach(e -> jokesDTO.add(new JokeDTO(e)));
     }
 
+    //Basically the same as testDummyMsg
     @Disabled
     @Test
     public void testServerIsUp() {
@@ -120,7 +121,6 @@ public class JokeResourceTest {
     }
 
     //This test assumes the database contains two rows
-    @Disabled
     @Test
     public void testDummyMsg() throws Exception {
         given()
