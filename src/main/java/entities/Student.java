@@ -27,14 +27,16 @@ public class Student implements Serializable {
     private String studentID;
     private String name;
     private String github;
+    private String color;
 
     public Student() {
     }
 
-    public Student(String studentID, String name, String github) {
+    public Student(String studentID, String name, String github, String color) {
         this.studentID = studentID;
         this.name = name;
         this.github = github;
+        this.color = color;
     }
 
     public Long getId() {
@@ -69,13 +71,21 @@ public class Student implements Serializable {
         this.github = github;
     }
 
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
     @Override
     public int hashCode() {
         int hash = 7;
-//        hash = 29 * hash + Objects.hashCode(this.id);
-        hash = 29 * hash + Objects.hashCode(this.studentID);
-        hash = 29 * hash + Objects.hashCode(this.name);
-        hash = 29 * hash + Objects.hashCode(this.github);
+        hash = 11 * hash + Objects.hashCode(this.studentID);
+        hash = 11 * hash + Objects.hashCode(this.name);
+        hash = 11 * hash + Objects.hashCode(this.github);
+        hash = 11 * hash + Objects.hashCode(this.color);
         return hash;
     }
 
@@ -100,10 +110,10 @@ public class Student implements Serializable {
         if (!Objects.equals(this.github, other.github)) {
             return false;
         }
-//        if (!Objects.equals(this.id, other.id)) {
-//            return false;
-//        }
+        if (!Objects.equals(this.color, other.color)) {
+            return false;
+        }
         return true;
     }
-
+    
 }

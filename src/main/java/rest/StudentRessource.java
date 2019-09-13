@@ -38,10 +38,10 @@ public class StudentRessource {
         em.getTransaction().commit();
 
         ArrayList<Student> allStudents = new ArrayList();
-        allStudents.add(new Student("cs340", "Camilla Staunstrup", "github.com/Castau"));
-        allStudents.add(new Student("mh748", "Malte Hviid-Magnussen", "github.com/MalteMagnussen"));
-        allStudents.add(new Student("ab363", "Asger Bjarup", "github.com/HrBjarup"));
-        allStudents.add(new Student("rn118", "Rúni Niclassen", "github.com/Runi-VN"));
+        allStudents.add(new Student("cs340", "Camilla Staunstrup", "github.com/Castau", "red"));
+        allStudents.add(new Student("mh748", "Malte Hviid-Magnussen", "github.com/MalteMagnussen", "red"));
+        allStudents.add(new Student("ab363", "Asger Bjarup", "github.com/HrBjarup", "red"));
+        allStudents.add(new Student("rn118", "Rúni Niclassen", "github.com/Runi-VN", "red"));
         try {
             for (Student s : allStudents) {
                 em.getTransaction().begin();
@@ -69,6 +69,17 @@ public class StudentRessource {
     public String getAllStudents() throws Exception {
         try {
             return GSON.toJson(FACADE.getAllStudentDTO());
+        } catch (Exception ex) {
+            return "{\"error\": \"" + ex.getMessage() + "\"}";
+        }
+    }
+    
+    @GET
+    @Path("/allstudentscolor")
+    @Produces({MediaType.APPLICATION_JSON})
+    public String getAllStudentsColor() throws Exception {
+        try {
+            return GSON.toJson(FACADE.getAllStudentDTOcolor());
         } catch (Exception ex) {
             return "{\"error\": \"" + ex.getMessage() + "\"}";
         }

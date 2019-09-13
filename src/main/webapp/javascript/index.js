@@ -1,13 +1,15 @@
 document.addEventListener("DOMContentLoaded", function () {
-    students();
+    students("/CA-1/api/students/allstudents");
 });
 
 document.getElementById("reset").addEventListener("click", function (event) {
-    resetTable();
+    resetTable("/CA-1/api/students/allstudentscolor");
 });
 
-function students() {
-    let url = "/CA-1/api/students/allstudents";
+//allstudentscolor
+
+function students(url) {
+    //let url = "/CA-1/api/students/allstudents";
 
     fetch(url)
         .then(res => res.json())
@@ -63,9 +65,9 @@ function fixTableHeaders(){
     document.getElementById("github").innerText = "Student Github Link";
 }
 
-function resetTable(){
+function resetTable(url){
     let oldtable = document.getElementById("studentTable");
     oldtable.innerHTML = "";
-    students();
+    students(url);
 
 }
