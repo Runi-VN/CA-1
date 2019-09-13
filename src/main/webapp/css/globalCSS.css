@@ -134,4 +134,20 @@ code {
     align-items: center;
 }
 
+.buttonimgrelative{
+    position: relative;
+}
+
+.buttonimgabsolute{
+    position: absolute; 
+    top:8px; 
+    left:8px;
+}
+
+.buttonimgabsolutefavicon{
+    position: absolute;
+    top:10px; 
+    left:10px;
+}
+
 /* GROUP INDEX CSS END */
