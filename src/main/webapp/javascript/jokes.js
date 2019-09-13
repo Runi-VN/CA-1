@@ -109,7 +109,7 @@ window.onload = function () {
      * @type type
      */
     document.getElementById("btnFetchChuck").addEventListener("click", function (e) {
-        fetch("http://api.icndb.com/jokes/random")
+        fetch("https://api.icndb.com/jokes/random")
                 .then(res => res.json())
                 .then(data => {
                     // Inside this callback, and only here, the response data is available
