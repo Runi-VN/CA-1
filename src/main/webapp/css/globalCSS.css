@@ -1,24 +1,49 @@
 /* Joke.jsp css */
 
-pre code {
+code {
     background-color: #eee;
     border: 1px solid #999;
-    display: block;
-    padding: 20px;
+}
+
+#jokesBody {
+    text-align: center;
+    font-family: monospace;
+}
+
+ #idOutput:not(:empty){
+    border: 1px dotted black;
+    display: inline-block;
+    padding: 10px;
+    width: 24%;
+}
+
+#jokesContainer {
+    display: inline-block;
+    padding: 15px;
+    border: 2px solid black;
+    width: 12%;
+    padding-bottom: 1%;
+}
+
+#jokesGreeting {
+    border-bottom-style: solid;
+    display: inline-block;
+}
+
+#jokesGreetingContainer{
+    padding-top: 1%;
+    padding-bottom: 2%;
+}
+
+#returnLink {
+    border-bottom: 1px solid;
+    font-size: 20px;
 }
 
 /* GROUP CONTRACT CSS START */
 
-.container {
+#OutPutContainer {
     display: flex;
-}
-
-#GroupContractContent {
-    order: 2;
-}
-
-#WhoDidWhat {
-    order: 1;
 }
 
 .c1 {

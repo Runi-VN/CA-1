@@ -12,17 +12,60 @@
         <link href="css/globalCSS.css" rel="stylesheet" type="text/css"/>
         <title>Jokes</title>
     </head>
+    <body id="jokesBody">
+        <div id="jokes">
+            <div id="jokesGreetingContainer">
+                <h1 id="jokesGreeting">Our Cool Jokes</h1>
+            </div>
 
-    <body>
-        <h1 id="greeting"></h1>
+            <p>Assignment 3: Fetch random joke</p>
+            <div id="jokesContainer">
+                <form>
+                    <label>JSON</label>
+                    <button id="btnFetchRandom" type="button" class="btn btn-primary btn-block">Fetch Random</button>
+                    <button id="btnFetchRandomDTO" type="button" class="btn btn-secondary btn-block">Fetch Random (DTO)</button>
+                </form>
 
-        <div id="container">
-            <span id="output"></span>
+            </div><br><br>
+            <pre id="randomOutput"></pre><br>
+            <pre id="randomOutputDTO"></pre>
 
+
+            <p>Assignment 2: Fetch joke by ID</p>
+            <div id="jokesContainer">
+                <form>
+                    <label for="idInput">Joke ID<br>(&lt;p&gt;-tag)</label><br>
+                    <input type="number" id="idInput"><br><br>
+                    <button id="btnFetchId" type="button" class="btn btn-primary btn-block">Fetch Joke</button>
+                    <button id="btnFetchIdDTO" type="button" disabled title="Implemented but not required | makes no sense to display" class="btn btn-secondary btn-block">Fetch Joke (DTO)</button>
+                </form>
+
+            </div><br><br>
+            <p id="idOutput"></p>
+
+
+            <p>Assignment 1: Fetch all jokes</p>
+            <div id="jokesContainer">
+                <form>
+                    <button id="btnFetchAll" type="button" class="btn btn-primary btn-block">Fetch All</button>
+                    <button id="btnFetchAllDTO" type="button" class="btn btn-secondary btn-block">Fetch All (DTO)</button>
+                </form>
+
+            </div>
+
+            <table id="allJokes" class="table table-striped"></table>
+
+
+            <a href="index.html" id="returnLink">Return to index</a>
+
+            <div>
+                <br>
+                <button type="button" class="btn btn-warning btn-sm" id="btnFetchChuck">Extra<br>(click me)</button>
+                <p id="chuckOutput"></p>
+            </div>
         </div>
-
-        <a href="index.html" id="returnLink">Return to index</a>
-        <!-- Javascript import -->
+        <!-- Javascript -->
         <script src="javascript/jokes.js" type="text/javascript"></script>
+        <script src="javascript/tableUtil.js" type="text/javascript"></script>
     </body>
 </html>
