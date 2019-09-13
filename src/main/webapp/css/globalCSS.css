@@ -116,4 +116,22 @@ code {
     color: white !important;
 }
 
+.pindex{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.pindexbig{
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 700;
+    font-size: 25px;
+}
+
+.flexcolumn{
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+}
+
 /* GROUP INDEX CSS END */
