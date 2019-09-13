@@ -7,7 +7,6 @@ import io.restassured.RestAssured;
 import static io.restassured.RestAssured.get;
 import static io.restassured.RestAssured.given;
 import io.restassured.parsing.Parser;
-import java.io.IOException;
 import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,6 +26,7 @@ import static org.hamcrest.Matchers.notNullValue;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import utils.EMF_Creator.DbSelector;
 import utils.EMF_Creator.Strategy;
@@ -112,6 +112,7 @@ public class JokeResourceTest {
         jokes.forEach(e -> jokesDTO.add(new JokeDTO(e)));
     }
 
+    @Disabled
     @Test
     public void testServerIsUp() {
         System.out.println("Testing is server UP");
@@ -119,6 +120,7 @@ public class JokeResourceTest {
     }
 
     //This test assumes the database contains two rows
+    @Disabled
     @Test
     public void testDummyMsg() throws Exception {
         given()
