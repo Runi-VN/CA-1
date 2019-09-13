@@ -19,6 +19,7 @@ function students() {
 
 function tableHead(table, data) {
     let head = table.createTHead();
+    head.classList.add('thead-dark');
     let row = head.insertRow();
     for (let key of data) {
         let th = document.createElement("th");
@@ -30,8 +31,11 @@ function tableHead(table, data) {
 
 }
 function tableData(table, data) {
+    let tbody = document.createElement('tbody');
+    table.appendChild(tbody);
     for (let element of data) {
         let row = table.insertRow();
+        tbody.appendChild(row);
         for (key in element) {
             let cell = row.insertCell();
             let cellValue = element[key];
