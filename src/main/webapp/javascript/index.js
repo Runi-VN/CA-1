@@ -41,14 +41,19 @@ function tableData(table, data) {
             let cell = row.insertCell();
             let cellValue = element[key];
             let text = document.createTextNode(cellValue);
+            customizeTableCell(cell, cellValue, text)
+        }
+    }
+}
 
-            if (cellValue.includes("github")) {
+function customizeTableCell(cell, cellValue, text){
+    if (cellValue.includes("github")) {
                 let a = document.createElement('a');
                 a.appendChild(text);
                 a.href = "https://www." + cellValue;
                 cell.appendChild(a);
             }
-            if(cellValue === "red"){
+            else if(cellValue === "red"){
                 let i = cell.appendChild(document.createElement('i'))
                 i.classList.add("studentcolor");
                 i.classList.add("fa");
@@ -58,9 +63,8 @@ function tableData(table, data) {
             else {
                 cell.appendChild(text);
             }
-        }
-    }
 }
+
 
 function fixTableHeaders(){
     document.getElementById("studentID").innerText = "Student ID";
