@@ -129,7 +129,7 @@ public class StudentRessourceTest {
                 .contentType("application/json")
                 .get("/students/allstudents").then()
                 .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
-                .body("error", equalTo("no students exists in the database"));
+                .body("error", equalTo("database error"));
     }
 
     @Test
@@ -193,7 +193,7 @@ public class StudentRessourceTest {
                 .contentType("application/json")
                 .get("/students/studentname/Alberto Ulfred").then()
                 .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
-                .body("error", equalTo("no students by that name"));
+                .body("error", equalTo("database error"));
     }
 
     @Test
