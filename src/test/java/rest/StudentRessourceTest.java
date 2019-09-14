@@ -143,7 +143,7 @@ public class StudentRessourceTest {
                 .body("github", equalTo("www.github.com/rigmor"))
                 .body("color", equalTo("red"));
     }
-    
+
     @Test
     public void testGetStudentDTOByStudentID_Error() throws Exception {
         given()
@@ -152,7 +152,7 @@ public class StudentRessourceTest {
                 .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("error", equalTo("no student by that id"));
     }
-    
+
     @Test
     public void testGetStudentByDatabaseID() throws Exception {
         given()
@@ -165,7 +165,7 @@ public class StudentRessourceTest {
                 .body("github", equalTo("www.github.com/rigmor"))
                 .body("color", equalTo("red"));
     }
-    
+
     @Test
     public void testGetStudentByDatabaseID_Null() throws Exception {
         given()
@@ -175,7 +175,7 @@ public class StudentRessourceTest {
                 .body("error", equalTo("no student by that id"));
     }
 
-    @Test  // no students by that name
+    @Test
     public void testGetStudentDTOByName() throws Exception {
         given()
                 .contentType("application/json")
@@ -186,8 +186,8 @@ public class StudentRessourceTest {
                 .body("[0].github", equalTo("www.github.com/rigmor"))
                 .body("size()", is(1));
     }
-    
-    @Test  
+
+    @Test
     public void testGetStudentDTOByName_Error() throws Exception {
         given()
                 .contentType("application/json")
@@ -216,5 +216,4 @@ public class StudentRessourceTest {
                 .body("[4].color", equalTo("red"))
                 .body("size()", is(5));
     }
-
 }
