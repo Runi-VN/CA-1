@@ -62,18 +62,22 @@ public class StudentRessource {
     public String demo() {
         return "{\"msg\":\"path students succesful\"}";
     }
-    
-    @GET
+
+    @GET  // "{\"msg\":\"no students exists in the database\"}";
     @Path("/allstudents")
     @Produces({MediaType.APPLICATION_JSON})
     public String getAllStudents() throws Exception {
         try {
-            return GSON.toJson(FACADE.getAllStudentDTO());
+            if (FACADE.getAllStudentDTO() == null || FACADE.getAllStudentDTO().isEmpty()) {
+                return "{\"error\":\"no students exists in the database\"}";
+            } else {
+                return GSON.toJson(FACADE.getAllStudentDTO());
+            }
         } catch (Exception ex) {
-            return "{\"error\": \"" + ex.getMessage() + "\"}";
+            return "{\"error\":\"database error\"}";
         }
     }
-    
+
     @GET
     @Path("/allstudentscolor")
     @Produces({MediaType.APPLICATION_JSON})

@@ -118,6 +118,21 @@ public class StudentRessourceTest {
     }
 
     @Test
+    public void testGetAllStudents_Empty() throws Exception {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query query = em.createNativeQuery("truncate table CA1_test.STUDENT;");
+        query.executeUpdate();
+        em.getTransaction().commit();
+
+        given()
+                .contentType("application/json")
+                .get("/students/allstudents").then()
+                .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("error", equalTo("no students exists in the database"));
+    }
+
+    @Test
     public void testGetStudentDTOByStudentID() throws Exception {
         given()
                 .contentType("application/json")
@@ -125,7 +140,8 @@ public class StudentRessourceTest {
                 .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("studentID", equalTo("efg-567"))
                 .body("name", equalTo("Rigmor Alfsen"))
-                .body("github", equalTo("www.github.com/rigmor"));
+                .body("github", equalTo("www.github.com/rigmor"))
+                .body("color", equalTo("red"));
     }
 
     @Test
@@ -137,8 +153,8 @@ public class StudentRessourceTest {
                 .body("id", equalTo(5))
                 .body("studentID", equalTo("efg-567"))
                 .body("name", equalTo("Rigmor Alfsen"))
-                .body("github", equalTo("www.github.com/rigmor"));
-
+                .body("github", equalTo("www.github.com/rigmor"))
+                .body("color", equalTo("red"));
     }
 
     @Test
@@ -152,7 +168,7 @@ public class StudentRessourceTest {
                 .body("[0].github", equalTo("www.github.com/rigmor"))
                 .body("size()", is(1));
     }
-    
+
     @Test
     public void testGetAllStudentDTOColor() throws Exception {
         given()
@@ -173,4 +189,5 @@ public class StudentRessourceTest {
                 .body("[4].color", equalTo("red"))
                 .body("size()", is(5));
     }
+
 }
