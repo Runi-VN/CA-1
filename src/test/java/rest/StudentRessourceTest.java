@@ -99,15 +99,6 @@ public class StudentRessourceTest {
                 .body("msg", equalTo("path students succesful"));
     }
 
-//    @Test
-//    public void testData() {
-//        given()
-//                .contentType("application/json").when()
-//                .get("/students/data").then().assertThat()
-//                .statusCode(HttpStatus.OK_200.getStatusCode())
-//                .body("dataMsg", equalTo("Students created"));
-//    }
-
     @Test
     public void testGetAllStudents() throws Exception {
         given()
@@ -160,5 +151,26 @@ public class StudentRessourceTest {
                 .body("[0].name", equalTo("Rigmor Alfsen"))
                 .body("[0].github", equalTo("www.github.com/rigmor"))
                 .body("size()", is(1));
+    }
+    
+    @Test
+    public void testGetAllStudentDTOColor() throws Exception {
+        given()
+                .contentType("application/json").when()
+                .get("/students/allstudentscolor").then().assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("[0].studentID", equalTo("abc-123"))
+                .body("[0].name", equalTo("Ulrikke Jensen"))
+                .body("[0].github", equalTo("www.github.com/ulrikke"))
+                .body("[0].color", equalTo("red"))
+                .body("[2].studentID", equalTo("cde-345"))
+                .body("[2].name", equalTo("Werner Bo"))
+                .body("[2].github", equalTo("www.github.com/werner"))
+                .body("[2].color", equalTo("red"))
+                .body("[4].studentID", equalTo("efg-567"))
+                .body("[4].name", equalTo("Rigmor Alfsen"))
+                .body("[4].github", equalTo("www.github.com/rigmor"))
+                .body("[4].color", equalTo("red"))
+                .body("size()", is(5));
     }
 }

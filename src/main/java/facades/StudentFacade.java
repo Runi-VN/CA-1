@@ -71,6 +71,18 @@ public class StudentFacade {
             em.close();
         }
     }
+    
+    public StudentDTOcolor getStudentDTOcolorByStudentID(String studentID) throws Exception {
+        EntityManager em = getEntityManager();
+        try {
+            Student student = em.createNamedQuery("Student.getByStudentID", Student.class).setParameter("studentID", studentID).getSingleResult();
+            return new StudentDTOcolor(student);
+            } catch (Exception ex) {
+            throw new IllegalArgumentException("Could not find student: " + ex.getMessage());
+        } finally {
+            em.close();
+        }
+    }
 
     public List<StudentDTO> getAllStudentDTO() {
         EntityManager em = getEntityManager();

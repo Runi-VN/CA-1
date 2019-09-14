@@ -90,7 +90,7 @@ public class StudentRessource {
     @Produces({MediaType.APPLICATION_JSON})
     public String getStudentDTOByStudentID(@PathParam("studentid") String studentID) throws Exception {
         try {
-            return GSON.toJson(FACADE.getStudentDTOByStudentID(studentID));
+            return GSON.toJson(FACADE.getStudentDTOcolorByStudentID(studentID));
         } catch (Exception ex) {
             return "{\"error\": \"" + ex.getMessage() + "\"}";
         }
