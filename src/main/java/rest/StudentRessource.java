@@ -63,7 +63,7 @@ public class StudentRessource {
         return "{\"msg\":\"path students succesful\"}";
     }
 
-    @GET  // "{\"msg\":\"no students exists in the database\"}";
+    @GET
     @Path("/allstudents")
     @Produces({MediaType.APPLICATION_JSON})
     public String getAllStudents() throws Exception {
@@ -83,9 +83,13 @@ public class StudentRessource {
     @Produces({MediaType.APPLICATION_JSON})
     public String getAllStudentsColor() throws Exception {
         try {
-            return GSON.toJson(FACADE.getAllStudentDTOcolor());
+            if (FACADE.getAllStudentDTOcolor() == null || FACADE.getAllStudentDTOcolor().isEmpty()) {
+                return "{\"error\":\"no students exists in the database\"}";
+            } else {
+                return GSON.toJson(FACADE.getAllStudentDTOcolor());
+            }
         } catch (Exception ex) {
-            return "{\"error\": \"" + ex.getMessage() + "\"}";
+            return "{\"error\":\"database error\"}";
         }
     }
 
@@ -96,7 +100,7 @@ public class StudentRessource {
         try {
             return GSON.toJson(FACADE.getStudentDTOcolorByStudentID(studentID));
         } catch (Exception ex) {
-            return "{\"error\": \"" + ex.getMessage() + "\"}";
+            return "{\"error\":\"no student by that id\"}";
         }
     }
 
@@ -105,9 +109,13 @@ public class StudentRessource {
     @Produces({MediaType.APPLICATION_JSON})
     public String getStudentByDatabaseID(@PathParam("id") long id) throws Exception {
         try {
-            return GSON.toJson(FACADE.getStudentByDatabaseId(id));
+            if (FACADE.getStudentByDatabaseId(id) == null) {
+                return "{\"error\":\"no student by that id\"}";
+            } else {
+                return GSON.toJson(FACADE.getStudentByDatabaseId(id));
+            }
         } catch (Exception ex) {
-            return "{\"error\": \"" + ex.getMessage() + "\"}";
+            return "{\"error\":\"no student by that id\"}";
         }
     }
 
@@ -116,9 +124,13 @@ public class StudentRessource {
     @Produces({MediaType.APPLICATION_JSON})
     public String getStudentDTOByName(@PathParam("name") String name) throws Exception {
         try {
-            return GSON.toJson(FACADE.getStudentDTOByName(name));
+            if (FACADE.getStudentDTOByName(name) == null || FACADE.getStudentDTOByName(name).isEmpty()) {
+                return "{\"error\":\"no students by that name\"}";
+            } else {
+                return GSON.toJson(FACADE.getStudentDTOByName(name));
+            }
         } catch (Exception ex) {
-            return "{\"error\": \"" + ex.getMessage() + "\"}";
+            return "{\"error\":\"database error\"}";
         }
     }
 }
