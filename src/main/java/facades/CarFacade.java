@@ -2,7 +2,6 @@ package facades;
 
 import dto.CarDTO;
 import entities.Car;
-import entities.RenameMe;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
