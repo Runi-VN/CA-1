@@ -4,7 +4,6 @@ import dto.StudentDTO;
 import dto.StudentDTOcolor;
 import entities.Student;
 import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Query;
