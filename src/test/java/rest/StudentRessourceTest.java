@@ -99,15 +99,6 @@ public class StudentRessourceTest {
                 .body("msg", equalTo("path students succesful"));
     }
 
-//    @Test
-//    public void testData() {
-//        given()
-//                .contentType("application/json").when()
-//                .get("/students/data").then().assertThat()
-//                .statusCode(HttpStatus.OK_200.getStatusCode())
-//                .body("dataMsg", equalTo("Students created"));
-//    }
-
     @Test
     public void testGetAllStudents() throws Exception {
         given()
@@ -127,6 +118,21 @@ public class StudentRessourceTest {
     }
 
     @Test
+    public void testGetAllStudents_Empty() throws Exception {
+        EntityManager em = emf.createEntityManager();
+        em.getTransaction().begin();
+        Query query = em.createNativeQuery("truncate table CA1_test.STUDENT;");
+        query.executeUpdate();
+        em.getTransaction().commit();
+
+        given()
+                .contentType("application/json")
+                .get("/students/allstudents").then()
+                .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("error", equalTo("database error"));
+    }
+
+    @Test
     public void testGetStudentDTOByStudentID() throws Exception {
         given()
                 .contentType("application/json")
@@ -134,7 +140,17 @@ public class StudentRessourceTest {
                 .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
                 .body("studentID", equalTo("efg-567"))
                 .body("name", equalTo("Rigmor Alfsen"))
-                .body("github", equalTo("www.github.com/rigmor"));
+                .body("github", equalTo("www.github.com/rigmor"))
+                .body("color", equalTo("red"));
+    }
+
+    @Test
+    public void testGetStudentDTOByStudentID_Error() throws Exception {
+        given()
+                .contentType("application/json")
+                .get("/students/studentid/xyx").then()
+                .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("error", equalTo("no student by that id"));
     }
 
     @Test
@@ -146,8 +162,17 @@ public class StudentRessourceTest {
                 .body("id", equalTo(5))
                 .body("studentID", equalTo("efg-567"))
                 .body("name", equalTo("Rigmor Alfsen"))
-                .body("github", equalTo("www.github.com/rigmor"));
+                .body("github", equalTo("www.github.com/rigmor"))
+                .body("color", equalTo("red"));
+    }
 
+    @Test
+    public void testGetStudentByDatabaseID_Null() throws Exception {
+        given()
+                .contentType("application/json")
+                .get("/students/databaseid/10").then()
+                .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("error", equalTo("no student by that id"));
     }
 
     @Test
@@ -160,5 +185,35 @@ public class StudentRessourceTest {
                 .body("[0].name", equalTo("Rigmor Alfsen"))
                 .body("[0].github", equalTo("www.github.com/rigmor"))
                 .body("size()", is(1));
+    }
+
+    @Test
+    public void testGetStudentDTOByName_Error() throws Exception {
+        given()
+                .contentType("application/json")
+                .get("/students/studentname/Alberto Ulfred").then()
+                .assertThat().statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("error", equalTo("database error"));
+    }
+
+    @Test
+    public void testGetAllStudentDTOColor() throws Exception {
+        given()
+                .contentType("application/json").when()
+                .get("/students/allstudentscolor").then().assertThat()
+                .statusCode(HttpStatus.OK_200.getStatusCode())
+                .body("[0].studentID", equalTo("abc-123"))
+                .body("[0].name", equalTo("Ulrikke Jensen"))
+                .body("[0].github", equalTo("www.github.com/ulrikke"))
+                .body("[0].color", equalTo("red"))
+                .body("[2].studentID", equalTo("cde-345"))
+                .body("[2].name", equalTo("Werner Bo"))
+                .body("[2].github", equalTo("www.github.com/werner"))
+                .body("[2].color", equalTo("red"))
+                .body("[4].studentID", equalTo("efg-567"))
+                .body("[4].name", equalTo("Rigmor Alfsen"))
+                .body("[4].github", equalTo("www.github.com/rigmor"))
+                .body("[4].color", equalTo("red"))
+                .body("size()", is(5));
     }
 }
