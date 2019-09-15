@@ -110,7 +110,7 @@ public class CarFacadeTest {
     @Test
     public void testNegativeFindCarByIDAllInfo()
     {
-        System.out.println("findCarByIDAllInfo");
+        System.out.println("negativeFindCarByIDAllInfo (will print failure message from CarFacade)");
         Long id = 5L;
         Car expResult = null;
         Car result = facade.findCarByIDAllInfo(id);
@@ -130,7 +130,7 @@ public class CarFacadeTest {
     @Test
     public void testNegativeFindCarByID()
     {
-        System.out.println("findCarByID");
+        System.out.println("negativeFindCarByID (will print failure message from CarFacade)");
         Long id = 6L;
         CarDTO expResult = null;
         CarDTO result = facade.findCarByID(id);
