@@ -1,0 +1,9 @@
+
+body {
+  background: url('http://getwallpapers.com/wallpaper/full/5/f/1/98676.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
