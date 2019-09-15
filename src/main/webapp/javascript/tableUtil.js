@@ -38,7 +38,7 @@ function getAllTable(data) {
  * @returns {String}
  */
 function tableHeader(array) {
-    let returnString = "<table class=\"table\"><thead><tr>";
+    let returnString = "<table id=\"data-table\" class=\"table\"><thead><tr>";
     array.forEach(element => returnString += "<th scope=\"col\">" + element + "</th>");
     return returnString + "</tr></thead><tbody>";
 }

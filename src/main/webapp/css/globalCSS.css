@@ -132,4 +132,11 @@ code {
     margin: 6px;
 }
 
+#bottom-space {
+    padding-top: 300px;
+}
+
+.sort-button {
+    padding: 0px;
+}
 /* CARS CSS END */
