@@ -65,7 +65,7 @@ public class CarFacade {
         } catch (Exception ex)
         {
             System.out.println("Failed to retrieve all cars");
-            ex.printStackTrace();
+            //ex.printStackTrace();
             return null;
         } finally
         {
@@ -91,7 +91,7 @@ public class CarFacade {
         } catch (Exception ex)
         {
             System.out.println("Failed to persist object");
-            ex.printStackTrace();
+            //ex.printStackTrace();
             return null;
         } finally
         {
@@ -117,7 +117,7 @@ public class CarFacade {
         } catch (Exception ex)
         {
             System.out.println("Failed to search for the car");
-            ex.printStackTrace();
+            //ex.printStackTrace();
             return null;
         } finally
         {
@@ -142,7 +142,7 @@ public class CarFacade {
         } catch (Exception ex)
         {
             System.out.println("Failed to search for the car");
-            ex.printStackTrace();
+            //ex.printStackTrace();
             return null;
         } finally
         {
