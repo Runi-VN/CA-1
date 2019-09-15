@@ -2,6 +2,7 @@ package facades;
 
 import dto.StudentDTO;
 import dto.StudentDTOcolor;
+import entities.Student;
 import java.util.ArrayList;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
