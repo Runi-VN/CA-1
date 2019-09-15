@@ -13,3 +13,8 @@ https://travis-ci.org/Runi-VN/CA-1 [![Build Status](https://travis-ci.org/Runi-V
 
 ### Deployment
 https://runivn.dk/CA-1/
+
+
+### Documentation
+
+We built this using [branches](https://github.com/Runi-VN/CA-1/branches) for every [issue](https://github.com/Runi-VN/CA-1/issues?utf8=%E2%9C%93&q=is%3Aissue) with the help of [Github Projects](https://github.com/Runi-VN/CA-1/projects/1).

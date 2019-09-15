@@ -3,25 +3,55 @@
     <head>
         <title>CA1 - Hold Krykke</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <link rel="shortcut icon" href="/CA-1/favicon.ico" />
         <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700|Roboto:700&display=swap" rel="stylesheet">
         <link href="css/globalCSS.css" rel="stylesheet">
     </head>
     <body>
         <div class="container mt-5">
+            <div class="d-flex justify-content-center flexcolumn">
+                <p class="pindexbig">Hold Krykke</p>
+                <p><i class="pindex fas fa-crutch fa-5x"></i></p>
+                <p class="pindex">Klasse A</p>
+            </div>
             <div>
-                <table class="table">
+                <div class="d-flex justify-content-center">
+                    <p class="pindex mt-5">Members</p>
+                </div>
+                <table id="studentTable" class="table table-hover">
                 </table>
             </div>
+            <div class="col-sm-2 offset-sm-10 col-12">
+                <a id="reset" class="btn btn-outline-dark btn-block fas fa-redo" role="button"></a>
+            </div>
         </div>
-        <div>
-            <a href="groupContract.html" id="contracthtml">Group Contract</a> 
+        <div class="container mt-5  mb-5">
+            <div class="row">
+                <div class="col-sm-4 offset-sm-4 col-12">
+                    <div class="d-flex justify-content-center">
+                        <p class="pindex">Links</p>
+                    </div>
+                    <div class="mt-1">
+                        <a class="btn btn-outline-dark btn-block buttonimgrelative" href="groupContract.html" role="button"><i class="fas fa-file-signature fa-lg buttonimgabsolutefavicon"></i>Group Contract</a>
+                    </div>
+                    <div class="mt-1">
+                        <a class="btn btn-outline-dark btn-block buttonimgrelative" href="jokes.html" role="button"><i class="fas fa-smile-wink fa-lg buttonimgabsolutefavicon"></i>Jokes!</a>
+                    </div>
+                    <div class="mt-1">
+                        <a class="btn btn-outline-dark btn-block buttonimgrelative" href="cars.html" role="button"><i class="fas fa-car fa-lg buttonimgabsolutefavicon"></i>Our Cars For Sale</a>
+                    </div>
+                    <div class="mt-1">
+                        <a class="btn btn-outline-dark btn-block buttonimgrelative" href="https://github.com/Runi-VN/CA-1" role="button"><i class="fab fa-github fa-lg buttonimgabsolutefavicon"></i>Our GitHub Repo</a>
+                    </div>
+                    <div class="mt-1">
+                        <a class="btn btn-outline-dark btn-block buttonimgrelative" href="https://travis-ci.org/Runi-VN/CA-1" role="button"> <img class="buttonimgabsolute" src="https://travis-ci.org/Runi-VN/CA-1.svg?branch=master"/>Our Travis Build Log</a>
+                    </div>
+                </div>
+            </div>
         </div>
-        <div>
-            <a href="jokes.html" id="jokeshtml">Jokes!</a>
-        </div>
-        <div>
-            <a href="cars.html" id="carshtml">Our cars for sale</a>
-        </div>
+        <script src="https://kit.fontawesome.com/dbf975ea69.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.0.min.js" crossorigin="anonymous"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="javascript/index.js"></script>
