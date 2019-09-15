@@ -35,10 +35,10 @@ public class StudentFacade {
     public Student getStudentByDatabaseId(long id) throws Exception {
         EntityManager em = getEntityManager();
         try {
-            if(em.find(Student.class, id) == null){
+            Student student = em.find(Student.class, id);
+            if(student == null){
                 throw new IllegalArgumentException();
             }
-            Student student = em.find(Student.class, id);
             return student;
         } catch (Exception ex) {
             throw new IllegalArgumentException("Could not find student");
